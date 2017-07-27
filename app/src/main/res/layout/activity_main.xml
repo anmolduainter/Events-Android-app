@@ -1,36 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout
+<android.support.v4.widget.DrawerLayout android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <include
+        layout="@layout/content_main"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"></include>
+
 
     <android.support.design.widget.NavigationView
-        android:layout_width="match_parent"
+        android:id="@+id/nav_view"
+        android:layout_width="280dp"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="false"
         android:layout_height="match_parent">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-       <TextView
-           android:id="@+id/AllEvents"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text="All Events"/>
+        <FrameLayout
+            android:id="@+id/FrameNav"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+            <RelativeLayout
+                android:id="@+id/RelativeLayoutnav"
+                android:background="@drawable/mountain"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
+                <TextView
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Login"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="20dp"/>
 
-        <TextView
-            android:id="@+id/TodayEvents"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="All Events"/>
+            </RelativeLayout>
+        </FrameLayout>
 
-        <TextView
-            android:id="@+id/RegsiteredEvents"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="All Events"/>
+        <android.support.v7.widget.RecyclerView
+            android:layout_below="@id/FrameNav"
+            android:id="@+id/Recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+        </android.support.v7.widget.RecyclerView>
 
-
-
+        </RelativeLayout>
     </android.support.design.widget.NavigationView>
 
 
