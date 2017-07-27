@@ -1,5 +1,6 @@
 package com.example.anmol.events.Adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.anmol.events.R;
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
@@ -24,8 +26,9 @@ public class RecyclerAllEvents extends RecyclerView.Adapter<RecyclerAllEvents.Vi
 
     List<String> imgUrl,name,date,time,desc,phone,username;
 
+    Context ctx;
 
-    public RecyclerAllEvents(List<String> imgUrl, List<String> name, List<String> date, List<String> time, List<String> desc, List<String> phone, List<String> username) {
+    public RecyclerAllEvents(Context ctx, List<String> imgUrl, List<String> name, List<String> date, List<String> time, List<String> desc, List<String> phone, List<String> username) {
 
         this.imgUrl=imgUrl;
         this.name=name;
@@ -34,6 +37,7 @@ public class RecyclerAllEvents extends RecyclerView.Adapter<RecyclerAllEvents.Vi
         this.desc=desc;
         this.phone=phone;
         this.username=username;
+        this.ctx=ctx;
 
     }
 
@@ -48,6 +52,7 @@ public class RecyclerAllEvents extends RecyclerView.Adapter<RecyclerAllEvents.Vi
         {
             super(itemView);
             rel=itemView.findViewById(R.id.AllEventRel);
+            img=itemView.findViewById(R.id.AllEventsImage);
             name=itemView.findViewById(R.id.Name);
             date=itemView.findViewById(R.id.Date);
             time=itemView.findViewById(R.id.Time);
@@ -66,7 +71,13 @@ public class RecyclerAllEvents extends RecyclerView.Adapter<RecyclerAllEvents.Vi
     @Override
     public void onBindViewHolder(RecyclerAllEvents.ViewHolder holder, int position) {
 
+
+        Picasso.with(ctx).load(imgUrl.get(position)).fit().into(holder.img);
+
         holder.name.setText(name.get(position));
+        holder.date.setText(date.get(position));
+        holder.time.setText(time.get(position));
+        holder.desc.setText(desc.get(position));
 
 
     }

@@ -54,6 +54,8 @@ public class AllEvents extends AppCompatActivity {
 
         rv= (RecyclerView) findViewById(R.id.recyclerAllEvents);
 
+
+
         rq=Volley.newRequestQueue(AllEvents.this);
 
        // final ProgressDialog progressDialog = ProgressDialog.show(getApplicationContext(), "", "Pro Start", false, false);
@@ -116,7 +118,7 @@ public class AllEvents extends AppCompatActivity {
 
                         layoutManager=new LinearLayoutManager(AllEvents.this);
                         rv.setLayoutManager(layoutManager);
-                        adapter=new RecyclerAllEvents(imgUrl,name,date,time,desc,phone,username);
+                        adapter=new RecyclerAllEvents(AllEvents.this,imgUrl,name,date,time,desc,phone,username);
                         rv.setAdapter(adapter);
 
                     }
