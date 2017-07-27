@@ -37,4 +37,5 @@ dependencies {
     compile 'com.android.support:support-compat:25.1.1'
     compile 'com.daimajia.easing:library:2.0@aar'
     compile 'com.daimajia.androidanimations:library:2.2@aar'
+    compile 'com.android.volley:volley:1.0.0'
 }
