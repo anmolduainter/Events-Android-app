@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         recyclerView= (RecyclerView) findViewById(R.id.Recyclerview);
         layoutManager=new LinearLayoutManager(MainActivity.this);
         recyclerView.setLayoutManager(layoutManager);
-        adapter=new RecyclerNavAdapter(height);
+        adapter=new RecyclerNavAdapter(height,MainActivity.this);
 
         drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
