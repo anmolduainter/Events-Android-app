@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.anmol.events.Data.login;
+import com.example.anmol.events.LoginStatus.SharedPref;
 
 /**
  * Created by anmol on 30/7/17.
@@ -42,6 +43,12 @@ public class Login extends AppCompatActivity{
                     public void onSuccess(Boolean LoggedIn) {
 
                         if (LoggedIn){
+                            SharedPref s=new SharedPref(Login.this,LoggedIn);
+                            s.setStatus();
+                            boolean a=s.getStatus();
+
+                            Toast.makeText(getApplicationContext(),String.valueOf(a),Toast.LENGTH_LONG).show();
+
                             Intent i=new Intent(Login.this,MainActivity.class);
                             startActivity(i);
                         }

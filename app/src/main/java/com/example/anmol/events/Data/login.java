@@ -83,21 +83,6 @@ public class login {
             }
         };
 
-
-
-//        {
-//
-//            @Override
-//            protected Map<String, String> getParams() throws AuthFailureError {
-//
-//                Map<String,String> params=new HashMap<>();
-//                params.put("username",email);
-//                params.put("password",password);
-//                return params;
-//            }
-//        };
-
-
       rq.add(stringRequest);
 
     }
