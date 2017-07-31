@@ -61,7 +61,7 @@ public class RecyclerAllEvents extends RecyclerView.Adapter<RecyclerAllEvents.Vi
         TextView name1,date1,time1,desc1;
         ImageView img1;
         RelativeLayout rel1;
-        Button Register1;
+        Button Register1,BookMark;
 
         public ViewHolder(View itemView)
         {
@@ -73,6 +73,7 @@ public class RecyclerAllEvents extends RecyclerView.Adapter<RecyclerAllEvents.Vi
             time1=itemView.findViewById(R.id.Time);
             desc1=itemView.findViewById(R.id.Desc);
             Register1=itemView.findViewById(R.id.Register_All_Events_Button);
+            BookMark=itemView.findViewById(R.id.BookMark_All_Events);
 
             Register1.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -82,7 +83,7 @@ public class RecyclerAllEvents extends RecyclerView.Adapter<RecyclerAllEvents.Vi
 
                     if (LoggedIn){
 
-                        RegisterEvents registerEvents=new RegisterEvents(ctx,name.get(pos),date.get(pos),time.get(pos));
+                        RegisterEvents registerEvents=new RegisterEvents(ctx,name.get(pos),date.get(pos),time.get(pos),0);
 
                         registerEvents.POST(new RegisterEvents.AsyncCallBack() {
                             @Override
@@ -119,6 +120,39 @@ public class RecyclerAllEvents extends RecyclerView.Adapter<RecyclerAllEvents.Vi
                 }
             });
 
+            if (LoggedIn){
+
+                BookMark.setVisibility(View.VISIBLE);
+
+                BookMark.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        int pos=getAdapterPosition();
+
+                        final RegisterEvents registerEvents=new RegisterEvents(ctx,name.get(pos),date.get(pos),time.get(pos),1);
+
+                        registerEvents.POST(new RegisterEvents.AsyncCallBack() {
+                            @Override
+                            public void onSuccess(JSONObject jsonObject) throws JSONException {
+
+                                boolean success=jsonObject.getBoolean("success");
+                                if (success){
+                                    BookMark.setBackgroundColor(Color.GRAY);
+                                }
+                                else{
+                                    BookMark.setBackgroundColor(Color.WHITE);
+                                }
+
+                            }
+                        });
+
+
+                    }
+                });
+
+            }
+
 
         }
     }
@@ -135,7 +169,7 @@ public class RecyclerAllEvents extends RecyclerView.Adapter<RecyclerAllEvents.Vi
     public void onBindViewHolder(RecyclerAllEvents.ViewHolder holder, int position) {
 
 
-        Picasso.with(ctx).load(imgUrl.get(position)).fit().into(holder.img1);
+    //    Picasso.with(ctx).load(imgUrl.get(position)).fit().into(holder.img1);
 
         holder.name1.setText(name.get(position));
         holder.date1.setText(date.get(position));

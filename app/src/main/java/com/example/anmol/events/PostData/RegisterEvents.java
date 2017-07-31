@@ -21,12 +21,14 @@ public class RegisterEvents {
     String name,date,time;
     AsyncHttpClient asyncHttpClient;
     RequestParams requestParams;
+    int pos;
 
-    private static final String URL="http://192.168.0.105:3000/Events/Register";
+    private static final String URL[]={"http://192.168.0.105:3000/Events/Register",
+                                       "http://192.168.0.105:3000/Events/BookMark"};
 
     Context ctx;
 
-    public RegisterEvents(Context ctx, String name, String date, String time){
+    public RegisterEvents(Context ctx, String name, String date, String time,int pos){
 
         asyncHttpClient=new AsyncHttpClient();
         requestParams=new RequestParams();
@@ -36,6 +38,7 @@ public class RegisterEvents {
         this.name=name;
         this.date=date;
         this.time=time;
+        this.pos=pos;
         this.ctx=ctx;
     }
 
@@ -45,7 +48,7 @@ public class RegisterEvents {
         requestParams.put("date",date);
         requestParams.put("time",time);
 
-        asyncHttpClient.post(URL, requestParams, new AsyncHttpResponseHandler() {
+        asyncHttpClient.post(URL[pos], requestParams, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
 
