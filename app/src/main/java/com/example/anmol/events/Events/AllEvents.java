@@ -20,6 +20,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.anmol.events.Adapter.RecyclerAllEvents;
 import com.example.anmol.events.Data.EventsAll;
+import com.example.anmol.events.Data.login;
 import com.example.anmol.events.R;
 
 import org.json.JSONArray;
@@ -92,13 +93,24 @@ public class AllEvents extends AppCompatActivity {
 
         allData.getAll(new EventsAll.VolleyCallback() {
             @Override
-            public void onSuccess(List<List<String>> result) {
+            public void onSuccess(final List<List<String>> result) {
 
 
-                        layoutManager=new LinearLayoutManager(AllEvents.this);
-                        rv.setLayoutManager(layoutManager);
-                        adapter=new RecyclerAllEvents(AllEvents.this,result.get(0),result.get(1),result.get(2),result.get(3),result.get(4),result.get(5),result.get(6));
-                        rv.setAdapter(adapter);
+                       login l=new login(AllEvents.this);
+
+                        l.Login(new login.AsyncCallback() {
+                            @Override
+                            public void onSuccess(JSONObject jsonObject) throws JSONException {
+
+                                boolean Loggedin=jsonObject.getBoolean("loggedIn");
+
+                                layoutManager=new LinearLayoutManager(AllEvents.this);
+                                rv.setLayoutManager(layoutManager);
+                                adapter=new RecyclerAllEvents(Loggedin,AllEvents.this,result.get(0),result.get(1),result.get(2),result.get(3),result.get(4),result.get(5),result.get(6));
+                                rv.setAdapter(adapter);
+
+                            }
+                        });
 
 
             }

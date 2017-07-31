@@ -41,7 +41,6 @@ public class EventsAll {
 
     }
 
-
     public void getAll(final VolleyCallback callback){
 
         String URL = null;
@@ -53,10 +52,7 @@ public class EventsAll {
             }
 
         }
-
         rq= Volley.newRequestQueue(ctx);
-
-        // final ProgressDialog progressDialog = ProgressDialog.show(getApplicationContext(), "", "Pro Start", false, false);
         JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET,URL, null,
 
                 new Response.Listener<JSONObject>() {

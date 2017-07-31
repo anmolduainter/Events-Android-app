@@ -73,6 +73,7 @@
             />
 
         <Button
+            android:id="@+id/Register_All_Events_Button"
             android:layout_below="@id/AllEventsImage"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
