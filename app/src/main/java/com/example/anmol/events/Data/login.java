@@ -2,8 +2,10 @@ package com.example.anmol.events.Data;
 
 import android.content.Context;
 
+import com.example.anmol.events.Login;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.PersistentCookieStore;
 import com.loopj.android.http.RequestParams;
 
 import org.json.JSONException;
@@ -25,20 +27,32 @@ public class login {
 
     String TAG="MOVIE";
 
-    final static String URL="http://192.168.0.105:3000/login";
+    final static String URL="http://192.168.0.105:3000/login/and";
 
     AsyncHttpClient asyncHttpClient;
     RequestParams requestParams;
 
-    public login(String email, String password){
+    public login(Context ctx){
+        asyncHttpClient=new AsyncHttpClient();
+        asyncHttpClient.setEnableRedirects(true);
+        requestParams=new RequestParams();
+        PersistentCookieStore myCookieStore = new PersistentCookieStore(ctx);
+        asyncHttpClient.setCookieStore(myCookieStore);
+
+    }
+
+    public login(String email, String password,Context ctx){
 
         asyncHttpClient=new AsyncHttpClient();
         asyncHttpClient.setEnableRedirects(true);
         requestParams=new RequestParams();
+        PersistentCookieStore myCookieStore = new PersistentCookieStore(ctx);
+        asyncHttpClient.setCookieStore(myCookieStore);
+
 
         this.email=email;
         this.password=password;
-        //this.ctx=ctx;
+        this.ctx=ctx;
 
     }
 
@@ -46,7 +60,6 @@ public class login {
 
         requestParams.put("username",email);
         requestParams.put("password",password);
-
         asyncHttpClient.post(URL, requestParams, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -82,7 +95,7 @@ public class login {
 
 
     public interface AsyncCallback{
-        void onSuccess(JSONObject jsonObject);
+        void onSuccess(JSONObject jsonObject) throws JSONException;
     }
 
 
