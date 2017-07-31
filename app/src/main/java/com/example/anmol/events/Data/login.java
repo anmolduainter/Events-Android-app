@@ -2,21 +2,14 @@ package com.example.anmol.events.Data;
 
 import android.content.Context;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
+import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by anmol on 30/7/17.
@@ -24,73 +17,76 @@ import java.util.Map;
 
 public class login {
 
+
+
+
     String email,password;
     Context ctx;
-    RequestQueue rq;
-    final static String URL="http://192.168.0.105:3000/login/and";
 
-    public login(Context ctx,String email, String password){
+    String TAG="MOVIE";
+
+    final static String URL="http://192.168.0.105:3000/login";
+
+    AsyncHttpClient asyncHttpClient;
+    RequestParams requestParams;
+
+    public login(String email, String password){
+
+        asyncHttpClient=new AsyncHttpClient();
+        asyncHttpClient.setEnableRedirects(true);
+        requestParams=new RequestParams();
 
         this.email=email;
         this.password=password;
-        this.ctx=ctx;
+        //this.ctx=ctx;
 
     }
 
-    public void Login(final VolleyCallBack callBack){
+    public void Login(final AsyncCallback asyncCallback){
 
-        rq= Volley.newRequestQueue(ctx);
+        requestParams.put("username",email);
+        requestParams.put("password",password);
 
+        asyncHttpClient.post(URL, requestParams, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
 
-        StringRequest stringRequest=new StringRequest(Request.Method.POST, URL,
+                try {
+                    JSONObject testV=new JSONObject(new String(responseBody));
 
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
+                    System.out.println(testV);
 
-                        System.out.println(response);
-                        try {
-                            JSONObject jsonObject=new JSONObject(response.toString());
-                            System.out.println(jsonObject.getBoolean("LoggedIn"));
+                    asyncCallback.onSuccess(testV);
 
-                            callBack.onSuccess(jsonObject.getBoolean("LoggedIn"));
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
 
-        )
 
-        {
+            }
 
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
 
-                Map<String,String> params=new HashMap<>();
-                params.put("username",email);
-                params.put("password",password);
-                return params;
+
+
+                String a=new String(responseBody);
+
+                System.out.println(a);
+
             }
-        };
+        });
 
-      rq.add(stringRequest);
 
     }
 
 
-    public interface VolleyCallBack{
-        void onSuccess(Boolean LoggedIn);
+    public interface AsyncCallback{
+        void onSuccess(JSONObject jsonObject);
     }
+
+
+
 
 
 

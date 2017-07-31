@@ -58,4 +58,19 @@
         android:layout_below="@id/password_login_upper"
         android:layout_centerHorizontal="true"/>
 
+
+    <Button
+        android:id="@+id/facebook_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Log In with Facebook"
+        android:textStyle="bold|italic"
+        android:textColor="#fff"
+        android:background="@color/colorPrimary"
+        android:layout_below="@id/login_btn"
+        android:layout_centerHorizontal="true"/>
+
+
+
 </RelativeLayout>

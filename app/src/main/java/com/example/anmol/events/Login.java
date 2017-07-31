@@ -1,16 +1,15 @@
 package com.example.anmol.events;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.anmol.events.Data.login;
-import com.example.anmol.events.LoginStatus.SharedPref;
+
+import org.json.JSONObject;
 
 /**
  * Created by anmol on 30/7/17.
@@ -36,29 +35,13 @@ public class Login extends AppCompatActivity{
             @Override
             public void onClick(View view) {
 
-                login l=new login(Login.this,email.getText().toString(),password.getText().toString());
+                login l=new login(email.getText().toString(),password.getText().toString());
 
-                l.Login(new login.VolleyCallBack() {
+                l.Login(new login.AsyncCallback() {
                     @Override
-                    public void onSuccess(Boolean LoggedIn) {
+                    public void onSuccess(JSONObject jsonObject) {
 
-                        if (LoggedIn){
-                            SharedPref s=new SharedPref(Login.this,LoggedIn);
-                            s.setStatus();
-                            boolean a=s.getStatus();
-
-                            Toast.makeText(getApplicationContext(),String.valueOf(a),Toast.LENGTH_LONG).show();
-
-                            Intent i=new Intent(Login.this,MainActivity.class);
-                            startActivity(i);
-                        }
-
-                        else{
-
-                            Toast.makeText(getApplicationContext(),"Invalid Username or Password",Toast.LENGTH_LONG).show();
-
-                        }
-
+                        System.out.println(jsonObject);
 
                     }
                 });
