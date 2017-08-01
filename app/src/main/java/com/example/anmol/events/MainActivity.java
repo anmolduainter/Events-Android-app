@@ -1,7 +1,9 @@
 package com.example.anmol.events;
 
 import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -20,7 +22,14 @@ import android.view.View;
 import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.load.resource.gif.GifDrawable;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.example.anmol.events.Adapter.RecyclerNavAdapter;
@@ -29,12 +38,16 @@ import com.example.anmol.events.Data.login;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import jp.wasabeef.glide.transformations.BlurTransformation;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawer;
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     RecyclerView.Adapter adapter;
+    RelativeLayout relativeLayout,relativeLayoutMain;
+    TextView tx;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +55,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        login l=new login(MainActivity.this);
+
+        relativeLayoutMain= (RelativeLayout) findViewById(R.id.RelativeLayoutMAIN);
+
+
+        Glide.with(getApplicationContext()).load("http://www.iam-active.com/wp-content/uploads/2017/06/6.jpg").bitmapTransform(new BlurTransformation(getApplicationContext(),100)).into(new SimpleTarget<GlideDrawable>() {
+            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+            @Override
+            public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
+
+                relativeLayoutMain.setBackground(resource);
+
+            }
+        });
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +97,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         final int height=displayMetrics.heightPixels;
 
-        login l=new login(MainActivity.this);
+        relativeLayout= (RelativeLayout) findViewById(R.id.RelativeLayoutnav);
+
+        tx= (TextView) findViewById(R.id.Login_text);
+
+        Glide.with(getApplicationContext()).load("https://www.w3schools.com/css/trolltunga.jpg").bitmapTransform(new BlurTransformation(getApplicationContext(),100)).into(new SimpleTarget<GlideDrawable>() {
+            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+            @Override
+            public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
+
+                relativeLayout.setBackground(resource);
+
+            }
+        });
+
+
+
 
         l.Login(new login.AsyncCallback() {
             @Override
@@ -77,6 +121,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 boolean LoggedIn=jsonObject.getBoolean("loggedIn");
 
 
+                if (LoggedIn) {
+                    tx.setText("Welcome "+jsonObject.getJSONObject("user").getString("username"));
+                }
+                else{
+                    tx.setText("Please Login");
+                }
                 recyclerView= (RecyclerView) findViewById(R.id.Recyclerview);
                 layoutManager=new LinearLayoutManager(MainActivity.this);
                 recyclerView.setLayoutManager(layoutManager);

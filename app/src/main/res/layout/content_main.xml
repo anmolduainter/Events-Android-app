@@ -28,6 +28,6 @@
         android:layout_margin="20dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:src="@android:drawable/ic_dialog_email" />
+        android:src="@drawable/login" />
 
 </android.support.design.widget.CoordinatorLayout>
