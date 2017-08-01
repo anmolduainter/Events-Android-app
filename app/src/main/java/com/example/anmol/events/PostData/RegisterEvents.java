@@ -23,8 +23,8 @@ public class RegisterEvents {
     RequestParams requestParams;
     int pos;
 
-    private static final String URL[]={"http://192.168.0.105:3000/Events/Register",
-                                       "http://192.168.0.105:3000/Events/BookMark"};
+    private static final String URL[]={"http://192.168.0.106:3000/Events/Register",
+                                       "http://192.168.0.106:3000/Events/BookMark"};
 
     Context ctx;
 

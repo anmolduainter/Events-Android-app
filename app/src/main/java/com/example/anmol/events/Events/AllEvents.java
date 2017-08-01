@@ -36,15 +36,14 @@ import java.util.List;
 
 public class AllEvents extends AppCompatActivity {
 
-    String URL="http://192.168.0.105:3000/Events/JSON";
-    RequestQueue rq;
+
     Toolbar toolbar;
     CollapsingToolbarLayout collapsingToolbarLayout;
     AppBarLayout appBarLayout;
     RecyclerView rv;
     RecyclerView.LayoutManager layoutManager;
     RecyclerView.Adapter adapter;
-    List<String> imgUrl,name,date,time,desc,phone,username;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

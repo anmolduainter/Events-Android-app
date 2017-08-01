@@ -37,7 +37,7 @@ public class EventsAll {
     public EventsAll(Context ctx, String event){
         this.event=event;
         this.ctx=ctx;
-        hash.put("AllEvents","http://192.168.0.105:3000/Events/JSON");
+        hash.put("AllEvents","http://192.168.0.106:3000/Events/JSON");
 
     }
 

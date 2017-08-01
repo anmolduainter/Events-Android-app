@@ -22,15 +22,16 @@ public class RecyclerNavAdapter extends RecyclerView.Adapter<RecyclerNavAdapter.
 
 
     String[] s={"All Events","Today Events"};
-
+    String[] sl={"Registered Events"};
     int height;
     Context ctx;
+    boolean loggedIn;
 
-    public RecyclerNavAdapter(int height, Context ctx) {
+    public RecyclerNavAdapter(int height, Context ctx, boolean loggedIn) {
 
-      this.height=height;
-
+        this.height=height;
         this.ctx=ctx;
+        this.loggedIn=loggedIn;
 
     }
 
@@ -69,15 +70,28 @@ public class RecyclerNavAdapter extends RecyclerView.Adapter<RecyclerNavAdapter.
     @Override
     public void onBindViewHolder(RecyclerNavAdapter.ViewHolder holder, int position) {
 
-       holder.tx.setText(s[position]);
-        TranslateAnimation translateAnimation=new TranslateAnimation(0,0,height,0);
-        translateAnimation.setDuration((position+1)*300);
-        holder.itemView.startAnimation(translateAnimation);
+
+        if (loggedIn) {
+            if (s.length > position)
+                holder.tx.setText(s[position]);
+            else
+                holder.tx.setText(sl[s.length - position]);
+        }
+        else{
+            holder.tx.setText(s[position]);
+        }
 
     }
 
     @Override
-    public int getItemCount() {
-        return s.length;
+    public int getItemCount()
+    {
+        if (loggedIn){
+            return (s.length+sl.length);
+        }
+        else{
+            return s.length;
+        }
+
     }
 }

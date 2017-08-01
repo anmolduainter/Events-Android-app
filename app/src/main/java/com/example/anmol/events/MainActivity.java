@@ -24,6 +24,10 @@ import android.widget.ImageView;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.example.anmol.events.Adapter.RecyclerNavAdapter;
+import com.example.anmol.events.Data.login;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -64,33 +68,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         final int height=displayMetrics.heightPixels;
 
+        login l=new login(MainActivity.this);
 
-        recyclerView= (RecyclerView) findViewById(R.id.Recyclerview);
-        layoutManager=new LinearLayoutManager(MainActivity.this);
-        recyclerView.setLayoutManager(layoutManager);
-        adapter=new RecyclerNavAdapter(height,MainActivity.this);
-
-        drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
+        l.Login(new login.AsyncCallback() {
             @Override
-            public void onDrawerSlide(View drawerView, float slideOffset) {
+            public void onSuccess(JSONObject jsonObject) throws JSONException {
 
-            }
+                boolean LoggedIn=jsonObject.getBoolean("loggedIn");
 
-            @Override
-            public void onDrawerOpened(View drawerView) {
 
-                recyclerView.setVisibility(View.VISIBLE);
+                recyclerView= (RecyclerView) findViewById(R.id.Recyclerview);
+                layoutManager=new LinearLayoutManager(MainActivity.this);
+                recyclerView.setLayoutManager(layoutManager);
+                adapter=new RecyclerNavAdapter(height,MainActivity.this,LoggedIn);
                 recyclerView.setAdapter(adapter);
-
-            }
-
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                recyclerView.setVisibility(View.INVISIBLE);
-            }
-
-            @Override
-            public void onDrawerStateChanged(int newState) {
 
             }
         });
