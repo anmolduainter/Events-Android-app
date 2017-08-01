@@ -143,8 +143,6 @@ public class AllEvents extends AppCompatActivity {
 
                                                     imageView.startAnimation(alpha);
 
-
-
                                                     i++;
 
                                                 }
