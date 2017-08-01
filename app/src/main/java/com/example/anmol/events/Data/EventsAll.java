@@ -38,7 +38,7 @@ public class EventsAll {
         this.event=event;
         this.ctx=ctx;
         hash.put("AllEvents","http://192.168.0.106:3000/Events/JSON");
-
+        hash.put("RegisteredEvents","http://192.168.0.106:3000/Events/RegisteredEvents/a");
     }
 
     public void getAll(final VolleyCallback callback){
@@ -145,6 +145,98 @@ public class EventsAll {
         );
 
         rq.add(jsonObjectRequest);
+
+    }
+
+    public void getAllRegisteredEvents(final VolleyCallback callback){
+
+
+        String URL = null;
+
+        for(Map.Entry m:hash.entrySet()){
+
+            if (m.getKey().equals(event)){
+                URL= (String) m.getValue();
+            }
+
+        }
+        rq= Volley.newRequestQueue(ctx);
+        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET,URL, null,
+
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+
+                        imgUrl=new ArrayList<>();
+                        name=new ArrayList<>();
+                        date=new ArrayList<>();
+                        time=new ArrayList<>();
+                        desc=new ArrayList<>();
+                        Actualli=new ArrayList<>();
+
+                        try {
+                            //                   progressDialog.cancel();
+                            JSONArray jsonArray=response.getJSONArray("Result");
+
+                            for (int i=0;i<jsonArray.length();i++){
+
+                                JSONObject object=jsonArray.getJSONObject(i);
+
+                                //  System.out.println(object);
+
+                                imgUrl.add(object.getString("imgUrl"));
+                                name.add(object.getString("name"));
+                                date.add(object.getString("date"));
+                                time.add(object.getString("time"));
+                                desc.add(object.getString("desc"));
+//                                phone.add(object.getString("phone"));
+//                                username.add(object.getString("username"));
+
+                                System.out.println(imgUrl.get(i));
+                                System.out.println(name.get(i));
+                                System.out.println(date.get(i));
+                                System.out.println(time.get(i));
+
+
+
+                            }
+
+                            Actualli.add(imgUrl);
+                            Actualli.add(name);
+                            Actualli.add(date);
+                            Actualli.add(time);
+                            Actualli.add(desc);
+
+                            callback.onSuccess(Actualli);
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        Log.i("Message :  ",name.get(0));
+
+                    }
+
+
+
+                },
+
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+
+
+                    }
+                }
+
+        );
+
+        rq.add(jsonObjectRequest);
+
+
 
     }
 

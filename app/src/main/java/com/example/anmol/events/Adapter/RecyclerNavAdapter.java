@@ -11,6 +11,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.TextView;
 
 import com.example.anmol.events.Events.AllEvents;
+import com.example.anmol.events.Events.RegisteredEvents;
 import com.example.anmol.events.MainActivity;
 import com.example.anmol.events.R;
 
@@ -50,8 +51,13 @@ public class RecyclerNavAdapter extends RecyclerView.Adapter<RecyclerNavAdapter.
 
                     int position=getAdapterPosition();
 
-                    if (position==0){
+                    if (tx.getText().equals("All Events")){
                         Intent i=new Intent(ctx, AllEvents.class);
+                        ctx.startActivity(i);
+                    }
+
+                    else if (tx.getText().equals("Registered Events")){
+                        Intent i=new Intent(ctx, RegisteredEvents.class);
                         ctx.startActivity(i);
                     }
 

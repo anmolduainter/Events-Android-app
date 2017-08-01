@@ -169,7 +169,7 @@ public class RecyclerAllEvents extends RecyclerView.Adapter<RecyclerAllEvents.Vi
     public void onBindViewHolder(RecyclerAllEvents.ViewHolder holder, int position) {
 
 
-    //    Picasso.with(ctx).load(imgUrl.get(position)).fit().into(holder.img1);
+        Picasso.with(ctx).load(imgUrl.get(position)).fit().into(holder.img1);
 
         holder.name1.setText(name.get(position));
         holder.date1.setText(date.get(position));
