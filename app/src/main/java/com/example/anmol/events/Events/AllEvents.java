@@ -11,6 +11,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.animation.AlphaAnimation;
+import android.widget.ImageView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -22,6 +24,7 @@ import com.example.anmol.events.Adapter.RecyclerAllEvents;
 import com.example.anmol.events.Data.EventsAll;
 import com.example.anmol.events.Data.login;
 import com.example.anmol.events.R;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,6 +32,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
 
 /**
  * Created by anmol on 27/7/17.
@@ -43,6 +50,8 @@ public class AllEvents extends AppCompatActivity {
     RecyclerView rv;
     RecyclerView.LayoutManager layoutManager;
     RecyclerView.Adapter adapter;
+    ImageView imageView;
+    int i=0;
 
 
     @Override
@@ -54,7 +63,12 @@ public class AllEvents extends AppCompatActivity {
         collapsingToolbarLayout= (CollapsingToolbarLayout) findViewById(R.id.collapsinggToolbarallEve);
         appBarLayout= (AppBarLayout) findViewById(R.id.appBaralleve);
 
+        imageView= (ImageView) findViewById(R.id.imageAllEventsTop);
+
         rv= (RecyclerView) findViewById(R.id.recyclerAllEvents);
+
+        final Timer timer=new Timer();
+
 
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
 
@@ -103,14 +117,50 @@ public class AllEvents extends AppCompatActivity {
 
                                 boolean Loggedin=jsonObject.getBoolean("loggedIn");
 
+
                                 layoutManager=new LinearLayoutManager(AllEvents.this);
                                 rv.setLayoutManager(layoutManager);
                                 adapter=new RecyclerAllEvents(Loggedin,AllEvents.this,result.get(0),result.get(1),result.get(2),result.get(3),result.get(4),result.get(5),result.get(6));
                                 rv.setAdapter(adapter);
 
+
+
+
+                                timer.scheduleAtFixedRate(new TimerTask(){
+                                    @Override
+                                    public void run(){
+
+
+                                        AllEvents.this.runOnUiThread(new Runnable() {
+                                            public void run() {
+
+                                                if (i<result.get(0).size()) {
+
+                                                    Picasso.with(getApplicationContext()).load(result.get(0).get(i)).fit().into(imageView);
+
+                                                    AlphaAnimation alpha=new AlphaAnimation(0,1);
+                                                    alpha.setDuration(1000);
+
+                                                    imageView.startAnimation(alpha);
+
+
+
+                                                    i++;
+
+                                                }
+                                                else if (i==result.get(0).size()){
+                                                    i=0;
+                                                }
+
+
+                                            }
+                                        });
+                                    }
+                                },0,3000);
+
+
                             }
                         });
-
 
             }
         });

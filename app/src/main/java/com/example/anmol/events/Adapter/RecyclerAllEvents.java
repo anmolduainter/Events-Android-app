@@ -40,8 +40,10 @@ public class RecyclerAllEvents extends RecyclerView.Adapter<RecyclerAllEvents.Vi
     List<String> imgUrl,name,date,time,desc,phone,username;
     boolean LoggedIn;
     Context ctx;
+    ImageView imageView;
 
-    public RecyclerAllEvents(boolean LoggedIn,Context ctx, List<String> imgUrl, List<String> name, List<String> date, List<String> time, List<String> desc, List<String> phone, List<String> username) {
+    public RecyclerAllEvents( boolean LoggedIn, Context ctx, List<String> imgUrl, List<String> name, List<String> date, List<String> time, List<String> desc, List<String> phone, List<String> username) {
+
 
         this.imgUrl=imgUrl;
         this.name=name;
@@ -170,7 +172,6 @@ public class RecyclerAllEvents extends RecyclerView.Adapter<RecyclerAllEvents.Vi
 
 
         Picasso.with(ctx).load(imgUrl.get(position)).fit().into(holder.img1);
-
         holder.name1.setText(name.get(position));
         holder.date1.setText(date.get(position));
         holder.time1.setText(time.get(position));
