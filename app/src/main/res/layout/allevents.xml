@@ -26,16 +26,6 @@
                 android:background="@drawable/mountain"/>
 
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/tooolbarallEve"
-                android:elevation="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin">
-
-            </android.support.v7.widget.Toolbar>
-
-
         </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
