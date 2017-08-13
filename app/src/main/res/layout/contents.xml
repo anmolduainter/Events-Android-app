@@ -9,103 +9,17 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/content_main">
 
-
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
+     <android.support.v7.widget.RecyclerView
+        android:id="@+id/UpcomingEventsMainScreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="horizontal"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        ></android.support.v7.widget.RecyclerView>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/Events"
-            android:text="Events"
-            android:textSize="100dp"
-            android:textColor="#fff"
-            android:layout_marginTop="100dp"
-            android:textStyle="bold"
-            android:layout_centerHorizontal="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-
-            <TextView
-                android:id="@+id/about"
-                android:text="About"
-                android:textSize="50dp"
-                android:layout_below="@id/Events"
-                android:textColor="#fff"
-                android:layout_marginTop="100dp"
-                android:textStyle="bold"
-                android:layout_centerHorizontal="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-
-
-            <TextView
-                android:id="@+id/about_content"
-                android:text="There are lots of events.
-     Events like dancing,singing,dj etc.So Which event is the best.
-You will find it here."
-                android:textSize="20dp"
-
-                android:gravity="center"
-                android:textColor="#fff"
-                android:layout_below="@id/about"
-                android:layout_marginTop="20dp"
-                android:textStyle="bold"
-                android:layout_centerHorizontal="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-
-
-
-            <TextView
-                android:id="@+id/TopEvents"
-                android:text="TopEvents"
-                android:textSize="50dp"
-                android:layout_below="@id/about_content"
-                android:layout_marginTop="100dp"
-                android:textStyle="bold"
-                android:textColor="#fff"
-                android:layout_centerHorizontal="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-
-
-            <TextView
-                android:id="@+id/TopEvents_content"
-                android:text="All Events will be taken into account
-
-With their number of likes , dislikes , interested and going
-
-And
-
-Will be ranked according to the score."
-                android:textSize="20dp"
-
-                android:gravity="center"
-
-                android:textColor="#fff"
-                android:layout_below="@id/TopEvents"
-                android:layout_marginTop="20dp"
-                android:textStyle="bold"
-                android:layout_centerHorizontal="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-
-
-
-
-        </RelativeLayout>
-
-    </ScrollView>
-
-
+    </RelativeLayout>
 
 </RelativeLayout>

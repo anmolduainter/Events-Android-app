@@ -89,14 +89,25 @@ public class RegisteredEvents extends AppCompatActivity {
         EventsRegistered eventsRegistered=new EventsRegistered(RegisteredEvents.this);
         eventsRegistered.getData(new EventsRegistered.AsyncCallback() {
             @Override
-            public void onSuccess(final List<List<String>> result) {
+            public void onSuccess(final List<List<String>> result,final List<Boolean> result1) {
 
 
-                layoutManager=new LinearLayoutManager(RegisteredEvents.this);
-                rv.setLayoutManager(layoutManager);
-                adapter=new RecyclerRegEvents(RegisteredEvents.this,result.get(0),result.get(1),result.get(2),result.get(3),result.get(4));
-                rv.setAdapter(adapter);
+                login l=new login(RegisteredEvents.this);
 
+                l.Login(new login.AsyncCallback() {
+                    @Override
+                    public void onSuccess(JSONObject jsonObject) throws JSONException {
+
+                        boolean LoggedIn=jsonObject.getBoolean("loggedIn");
+
+                        layoutManager=new LinearLayoutManager(RegisteredEvents.this);
+                        rv.setLayoutManager(layoutManager);
+                        adapter=new RecyclerRegEvents(LoggedIn,RegisteredEvents.this,result.get(0),result.get(1),result.get(2),result.get(3),result.get(4),result1);
+                        rv.setAdapter(adapter);
+
+
+                    }
+                });
 
 
 

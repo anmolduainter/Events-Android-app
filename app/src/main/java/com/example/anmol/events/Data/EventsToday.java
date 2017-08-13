@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.PersistentCookieStore;
 import com.loopj.android.http.RequestParams;
 
 import org.json.JSONArray;
@@ -17,30 +16,33 @@ import java.util.List;
 import cz.msebera.android.httpclient.Header;
 
 /**
- * Created by anmol on 1/8/17.
+ * Created by anmol on 13/8/17.
  */
 
-public class EventsRegistered {
+public class EventsToday {
 
-
-    final static String URL="http://192.168.0.106:3000/Events/RegisteredEvents/a";
+    Context ctx;
 
     AsyncHttpClient asyncHttpClient;
     RequestParams requestParams;
 
     List<List<String>> Actualli;
-    List<String> imgUrl,name,date,time,desc;
+    List<String> imgUrl,name,date,time,desc,phone,username;
 
-    List<Boolean> timeArr;
+    List<String> timeArr;
 
-    public EventsRegistered(Context ctx){
+    public static final String URL="http://192.168.0.103:3000/android/Events/TodayEvents";
+
+
+    public EventsToday(Context ctx){
+
+        this.ctx=ctx;
         asyncHttpClient=new AsyncHttpClient();
         asyncHttpClient.setEnableRedirects(true);
         requestParams=new RequestParams();
-        PersistentCookieStore myCookieStore = new PersistentCookieStore(ctx);
-        asyncHttpClient.setCookieStore(myCookieStore);
 
     }
+
 
 
     public void getData(final AsyncCallback asyncCallback){
@@ -56,6 +58,9 @@ public class EventsRegistered {
                     date=new ArrayList<>();
                     time=new ArrayList<>();
                     desc=new ArrayList<>();
+                    phone=new ArrayList<String>();
+                    username=new ArrayList<String>();
+                    timeArr=new ArrayList<String>();
 
                     Actualli=new ArrayList<List<String>>();
 
@@ -63,13 +68,17 @@ public class EventsRegistered {
                     JSONObject testV=new JSONObject(new String(responseBody));
 
 
-                    JSONArray jsonArray=testV.getJSONArray("ResultArr");
+                    JSONArray jsonArray=testV.getJSONArray("Result");
 
-                    JSONArray jsonArray1=testV.getJSONArray("TimeArr");
+                    JSONArray jsonArray1=testV.getJSONArray("Arr");
+
+                    JSONArray jsonArray2=testV.getJSONArray("TimeArr");
 
                     for (int i=0;i<jsonArray.length();i++){
 
                         JSONObject object=jsonArray.getJSONObject(i);
+
+                        JSONObject object1=jsonArray1.getJSONObject(i);
 
                         //  System.out.println(object);
 
@@ -78,17 +87,15 @@ public class EventsRegistered {
                         date.add(object.getString("date"));
                         time.add(object.getString("time"));
                         desc.add(object.getString("desc"));
-                        timeArr.add(jsonArray1.getBoolean(i));
-//                                phone.add(object.getString("phone"));
-//                                username.add(object.getString("username"));
+                        phone.add(String.valueOf(object1.getInt("phone")));
+                        username.add(object1.getString("username"));
+
+                        timeArr.add(jsonArray2.get(i).toString());
 
                         System.out.println(imgUrl.get(i));
                         System.out.println(name.get(i));
                         System.out.println(date.get(i));
                         System.out.println(time.get(i));
-
-
-
                     }
 
 
@@ -97,12 +104,18 @@ public class EventsRegistered {
                     Actualli.add(date);
                     Actualli.add(time);
                     Actualli.add(desc);
+                    Actualli.add(phone);
+                    Actualli.add(username);
+                    Actualli.add(timeArr);
 
+                    boolean Today=testV.getBoolean("Today");
+
+                    boolean LoggedIn=testV.getBoolean("LoggedIn");
 
 
                     System.out.println(testV);
 
-                    asyncCallback.onSuccess(Actualli,timeArr);
+                    asyncCallback.onSuccess(Actualli,Today,LoggedIn);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -126,8 +139,9 @@ public class EventsRegistered {
 
 
     public interface AsyncCallback{
-        void onSuccess(List<List<String>> list,List<Boolean> list1);
+        void onSuccess(List<List<String>> list,boolean Today,boolean LoggedIn);
     }
+
 
 
 

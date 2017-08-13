@@ -33,10 +33,17 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.example.anmol.events.Adapter.RecyclerNavAdapter;
+import com.example.anmol.events.Adapter.RecyclerUpComingEventsVertical;
+import com.example.anmol.events.Adapter.RecyclerUpcomingEventsMain;
+import com.example.anmol.events.Data.EventsAll;
+import com.example.anmol.events.Data.EventsToday;
 import com.example.anmol.events.Data.login;
-
+import com.example.anmol.events.Events.AllEvents;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import jp.wasabeef.glide.transformations.BlurTransformation;
 
@@ -47,6 +54,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     RecyclerView.LayoutManager layoutManager;
     RecyclerView.Adapter adapter;
     RelativeLayout relativeLayout,relativeLayoutMain;
+    RecyclerView UpcomingEvents; // Upcoming Events
+    RecyclerView.LayoutManager layoutManagerUpcomingEvents;
+    RecyclerView.Adapter adapterUpcomingEvents;
+
     TextView tx;
 
     @Override
@@ -111,14 +122,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
+        final EventsAll allData=new EventsAll(MainActivity.this,"AllEvents");
 
-
+        final EventsToday allTodayEvents=new EventsToday(MainActivity.this);
 
         l.Login(new login.AsyncCallback() {
             @Override
             public void onSuccess(JSONObject jsonObject) throws JSONException {
 
-                boolean LoggedIn=jsonObject.getBoolean("loggedIn");
+                final boolean LoggedIn=jsonObject.getBoolean("loggedIn");
 
 
                 if (LoggedIn) {
@@ -132,6 +144,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 recyclerView.setLayoutManager(layoutManager);
                 adapter=new RecyclerNavAdapter(height,MainActivity.this,LoggedIn);
                 recyclerView.setAdapter(adapter);
+
+                final List<List<List<String>>> ResultingList;
+
+                ResultingList=new ArrayList<List<List<String>>>();
+
+               allData.getAll(new EventsAll.VolleyCallback() {
+                   @Override
+                   public void onSuccess(final List<List<String>> result) {
+
+                       allTodayEvents.getData(new EventsToday.AsyncCallback() {
+                           @Override
+                           public void onSuccess(List<List<String>> list, boolean Today, boolean LoggedIn) {
+
+                               ResultingList.add(result);
+
+                               ResultingList.add(list);
+
+                               UpcomingEvents= (RecyclerView) findViewById(R.id.UpcomingEventsMainScreen);
+                               layoutManagerUpcomingEvents=new LinearLayoutManager(MainActivity.this);
+                               UpcomingEvents.setLayoutManager(layoutManagerUpcomingEvents);
+                               adapterUpcomingEvents=new RecyclerUpComingEventsVertical(LoggedIn,Today,MainActivity.this,ResultingList);
+                               UpcomingEvents.setAdapter(adapterUpcomingEvents);
+
+
+
+                           }
+                       });
+                   }
+               });
+
 
             }
         });

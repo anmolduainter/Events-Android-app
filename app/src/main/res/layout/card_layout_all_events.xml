@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView
     android:layout_height="300dp"
-    android:layout_width="match_parent"
+    android:layout_width="300dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:elevation="2dp"
-    android:layout_marginLeft="20dp"
-    android:layout_marginRight="20dp"
     android:layout_marginTop="20dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -14,91 +12,114 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
+        <!--<ImageView-->
+            <!--android:id="@+id/AllEventsImage"-->
+            <!--android:background="@drawable/mountain"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent" />-->
+
+
+
+        <com.fmsirvent.ParallaxEverywhere.PEWImageView
             android:id="@+id/AllEventsImage"
             android:background="@drawable/mountain"
-            android:layout_width="150dp"
-            android:layout_height="150dp" />
-
-        <TextView
-            android:id="@+id/Name"
-            android:layout_toRightOf="@id/AllEventsImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Rock-Climbing"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            android:layout_marginLeft="5dp"/>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop" />
 
 
 
-        <TextView
-            android:id="@+id/Date"
-            android:layout_toRightOf="@id/AllEventsImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/Name"
-            android:layout_marginTop="10dp"
-            android:text="2017-11-10"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:layout_marginLeft="5dp"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="#8000"
+            android:layout_alignParentBottom="true">
+
+            <TextView
+                android:id="@+id/Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rock-Climbing"
+                android:textSize="15dp"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:layout_marginLeft="5dp"/>
 
 
 
-        <TextView
-            android:id="@+id/Time"
-            android:layout_toRightOf="@id/AllEventsImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/Date"
-            android:layout_marginTop="10dp"
-            android:text="8:00 AM - 9:00 PM"
-            android:textSize="20dp"
-            android:textStyle="bold"
-           />
+            <TextView
+                android:id="@+id/Date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Name"
+                android:layout_marginTop="10dp"
+                android:text="2017-11-10"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:textColor="#fff"
+                android:layout_marginLeft="5dp"/>
 
 
 
-        <TextView
-            android:id="@+id/Desc"
-            android:layout_toRightOf="@id/AllEventsImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/Time"
-            android:layout_marginTop="10dp"
-            android:text="Rock event"
-            android:textSize="15dp"
-            android:textStyle="italic"
-            />
-
-        <Button
-            android:id="@+id/Register_All_Events_Button"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:text="REGISTER"
-            android:textStyle="bold"
-            android:textColor="#fff"
-            android:layout_marginBottom="10dp"
-            android:textSize="15dp"
-            android:background="@android:color/holo_blue_dark"
-            android:layout_centerHorizontal="true"/>
+            <TextView
+                android:id="@+id/Time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Date"
+                android:layout_marginTop="10dp"
+                android:text="8:00 AM - 9:00 PM"
+                android:textSize="10dp"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                />
 
 
-        <Button
-            android:id="@+id/BookMark_All_Events"
-            android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@id/Register_All_Events_Button"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="30dp"
-            android:visibility="gone"
-            android:backgroundTint="@color/colorPrimary"
-            android:background="@drawable/bookmark"
-            android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:id="@+id/Desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Time"
+                android:layout_marginTop="10dp"
+                android:text="Rock event"
+                android:textSize="15dp"
+                android:textColor="#fff"
+                android:textStyle="italic"
+                />
+
+
+
+
+
+
+
+
+
+
+
+            <Button
+                android:id="@+id/Register_All_Events_Button"
+                android:layout_width="100dp"
+                android:text="REGISTER"
+                android:textColor="#fff"
+                android:background="@null"
+                android:layout_alignParentRight="true"
+                android:layout_height="match_parent"
+                />
+
+
+            <Button
+                android:id="@+id/BookMark_All_Events"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/Register_All_Events_Button"
+                android:backgroundTint="@color/colorPrimary"
+                android:background="@drawable/bookmark"
+                android:layout_centerHorizontal="true"/>
+
+        </RelativeLayout>
 
 
     </RelativeLayout>

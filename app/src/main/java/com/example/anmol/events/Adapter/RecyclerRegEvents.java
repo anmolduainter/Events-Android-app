@@ -35,9 +35,11 @@ public class RecyclerRegEvents extends RecyclerView.Adapter<RecyclerRegEvents.Vi
 
 
     List<String> imgUrl,name,date,time,desc;
+    List<Boolean> timeArr;
     Context ctx;
+    boolean loggedIn;
 
-    public RecyclerRegEvents(Context ctx, List<String> imgUrl, List<String> name, List<String> date, List<String> time, List<String> desc) {
+    public RecyclerRegEvents(boolean loggedIn, Context ctx, List<String> imgUrl, List<String> name, List<String> date, List<String> time, List<String> desc, List<Boolean> timeArr) {
 
         this.imgUrl=imgUrl;
         this.name=name;
@@ -45,6 +47,9 @@ public class RecyclerRegEvents extends RecyclerView.Adapter<RecyclerRegEvents.Vi
         this.time=time;
         this.desc=desc;
         this.ctx=ctx;
+        this.timeArr=timeArr;
+        this.loggedIn=loggedIn;
+
     }
 
 
@@ -53,7 +58,7 @@ public class RecyclerRegEvents extends RecyclerView.Adapter<RecyclerRegEvents.Vi
         TextView name1,date1,time1,desc1;
         ImageView img1;
         RelativeLayout rel1;
-        Button Register1,BookMark;
+        Button Register1,Like,NotLike;
 
         public ViewHolder(View itemView)
         {
@@ -65,8 +70,10 @@ public class RecyclerRegEvents extends RecyclerView.Adapter<RecyclerRegEvents.Vi
             time1=itemView.findViewById(R.id.RegTime);
             desc1=itemView.findViewById(R.id.RegDesc);
             Register1=itemView.findViewById(R.id.Not_Register_Reg_Events_Button);
+            Like=itemView.findViewById(R.id.Like_Reg_Events_Button);
+            NotLike=itemView.findViewById(R.id.Not_Like_Reg_Events_Button);
+        }
 
-            }
 
 
         }
