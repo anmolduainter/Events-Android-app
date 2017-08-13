@@ -21,6 +21,7 @@
         <activity android:name=".Events.AllEvents"></activity>
         <activity android:name=".Login"></activity>
         <activity android:name=".Events.RegisteredEvents"></activity>
+        <activity android:name=".Events.DetailsOfEvents"></activity>
     </application>
 
 </manifest>

@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.anmol.events.Events.DetailsOfEvents;
 import com.example.anmol.events.Login;
 import com.example.anmol.events.PostData.RegisterEvents;
 import com.example.anmol.events.R;
@@ -75,6 +76,8 @@ public class RecyclerUpComingEventsVertical extends RecyclerView.Adapter<Recycle
             layoutManager=new LinearLayoutManager(ctx,LinearLayoutManager.HORIZONTAL,false);
            // rv.setLayoutManager(layoutManager);
            // rv.setAdapter(adapter);
+
+
         }
 
 
