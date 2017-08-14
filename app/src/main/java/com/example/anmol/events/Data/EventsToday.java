@@ -31,7 +31,7 @@ public class EventsToday {
 
     List<String> timeArr;
 
-    public static final String URL="http://192.168.0.103:3000/android/Events/TodayEvents";
+    public static final String URL="http://192.168.0.104:3000/android/Events/TodayEvents";
 
 
     public EventsToday(Context ctx){
@@ -68,52 +68,60 @@ public class EventsToday {
                     JSONObject testV=new JSONObject(new String(responseBody));
 
 
-                    JSONArray jsonArray=testV.getJSONArray("Result");
-
-                    JSONArray jsonArray1=testV.getJSONArray("Arr");
-
-                    JSONArray jsonArray2=testV.getJSONArray("TimeArr");
-
-                    for (int i=0;i<jsonArray.length();i++){
-
-                        JSONObject object=jsonArray.getJSONObject(i);
-
-                        JSONObject object1=jsonArray1.getJSONObject(i);
-
-                        //  System.out.println(object);
-
-                        imgUrl.add(object.getString("imgUrl"));
-                        name.add(object.getString("name"));
-                        date.add(object.getString("date"));
-                        time.add(object.getString("time"));
-                        desc.add(object.getString("desc"));
-                        phone.add(String.valueOf(object1.getInt("phone")));
-                        username.add(object1.getString("username"));
-
-                        timeArr.add(jsonArray2.get(i).toString());
-
-                        System.out.println(imgUrl.get(i));
-                        System.out.println(name.get(i));
-                        System.out.println(date.get(i));
-                        System.out.println(time.get(i));
-                    }
-
-
-                    Actualli.add(imgUrl);
-                    Actualli.add(name);
-                    Actualli.add(date);
-                    Actualli.add(time);
-                    Actualli.add(desc);
-                    Actualli.add(phone);
-                    Actualli.add(username);
-                    Actualli.add(timeArr);
-
                     boolean Today=testV.getBoolean("Today");
 
-                    boolean LoggedIn=testV.getBoolean("LoggedIn");
+                    boolean LoggedIn = LoggedIn = testV.getBoolean("LoggedIn");
+
+                    if (Today) {
 
 
-                    System.out.println(testV);
+                        JSONArray jsonArray = testV.getJSONArray("Result");
+
+                        JSONArray jsonArray1 = testV.getJSONArray("Arr");
+
+                        JSONArray jsonArray2 = testV.getJSONArray("TimeArr");
+
+                        for (int i = 0; i < jsonArray.length(); i++) {
+
+                            JSONObject object = jsonArray.getJSONObject(i);
+
+                            JSONObject object1 = jsonArray1.getJSONObject(i);
+
+                            //  System.out.println(object);
+
+                            imgUrl.add(object.getString("imgUrl"));
+                            name.add(object.getString("name"));
+                            date.add(object.getString("date"));
+                            time.add(object.getString("time"));
+                            desc.add(object.getString("desc"));
+                            phone.add(String.valueOf(object1.getInt("phone")));
+                            username.add(object1.getString("username"));
+
+                            timeArr.add(jsonArray2.get(i).toString());
+
+                            System.out.println(imgUrl.get(i));
+                            System.out.println(name.get(i));
+                            System.out.println(date.get(i));
+                            System.out.println(time.get(i));
+                        }
+
+
+                        Actualli.add(imgUrl);
+                        Actualli.add(name);
+                        Actualli.add(date);
+                        Actualli.add(time);
+                        Actualli.add(desc);
+                        Actualli.add(phone);
+                        Actualli.add(username);
+                        Actualli.add(timeArr);
+
+                        System.out.println(testV);
+                    }
+                    else{
+
+
+
+                    }
 
                     asyncCallback.onSuccess(Actualli,Today,LoggedIn);
 

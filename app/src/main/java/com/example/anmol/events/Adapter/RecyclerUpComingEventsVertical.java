@@ -18,6 +18,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.anmol.events.Adapter.EventsHigh.RecyclerTodayAdapter;
+import com.example.anmol.events.Data.EventsHigh.TodayEventsHigh;
+import com.example.anmol.events.Data.EventsRegistered;
 import com.example.anmol.events.Events.DetailsOfEvents;
 import com.example.anmol.events.Login;
 import com.example.anmol.events.PostData.RegisterEvents;
@@ -27,6 +30,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,7 +45,7 @@ public class RecyclerUpComingEventsVertical extends RecyclerView.Adapter<Recycle
     Context ctx;
     ImageView imageView;
 
-    String s[]={"UpComing Events","Today Events"};
+    String s[]={"UpComing Events","Today Events","Events High(Today)"};
 
     List<List<List<String>>> ResultingList;
 
@@ -53,6 +57,7 @@ public class RecyclerUpComingEventsVertical extends RecyclerView.Adapter<Recycle
         this.ResultingList=ResultingList;
         this.ctx=ctx;
         this.LoggedIn=LoggedIn;
+
 
     }
 
@@ -92,37 +97,82 @@ public class RecyclerUpComingEventsVertical extends RecyclerView.Adapter<Recycle
     }
 
     @Override
-    public void onBindViewHolder(RecyclerUpComingEventsVertical.ViewHolder holder, int position) {
+    public void onBindViewHolder(final RecyclerUpComingEventsVertical.ViewHolder holder, int position) {
 
-
-//        Picasso.with(ctx).load(imgUrl.get(position)).into(holder.img1);
-//        holder.name1.setText(name.get(position));
-
-//        holder.date1.setText(date.get(position));
-//        holder.time1.setText(time.get(position));
-//        holder.desc1.setText(desc.get(position));
 
         holder.tx.setText(s[position]);
         holder.rv.setLayoutManager(holder.layoutManager);
 
-        imgUrl=ResultingList.get(position).get(0);
-        name=ResultingList.get(position).get(1);
-        date=ResultingList.get(position).get(2);
-        time=ResultingList.get(position).get(3);
-        desc=ResultingList.get(position).get(4);
-        phone=ResultingList.get(position).get(5);
-        username=ResultingList.get(position).get(6);
+        if (position==0){
 
-        holder.adapter=new RecyclerUpcomingEventsMain(holder.relativeLayout,LoggedIn,ctx,imgUrl,name,date,time, desc,phone, username,Today);
-        holder.rv.setAdapter(holder.adapter);
+            imgUrl=ResultingList.get(position).get(0);
+            name=ResultingList.get(position).get(1);
+            date=ResultingList.get(position).get(2);
+            time=ResultingList.get(position).get(3);
+            desc=ResultingList.get(position).get(4);
+            phone=ResultingList.get(position).get(5);
+            username=ResultingList.get(position).get(6);
 
+            holder.adapter=new RecyclerUpcomingEventsMain(holder.relativeLayout,LoggedIn,ctx,imgUrl,name,date,time, desc,phone, username,Today);
+            holder.rv.setAdapter(holder.adapter);
+
+
+        }
+        else if (position==1){
+
+            if (Today){
+                imgUrl=ResultingList.get(position).get(0);
+                name=ResultingList.get(position).get(1);
+                date=ResultingList.get(position).get(2);
+                time=ResultingList.get(position).get(3);
+                desc=ResultingList.get(position).get(4);
+                phone=ResultingList.get(position).get(5);
+                username=ResultingList.get(position).get(6);
+            }
+            else{
+
+
+                imgUrl=new ArrayList<>();
+                name=new ArrayList<>();
+                date=new ArrayList<>();
+                time=new ArrayList<>();
+                desc=new ArrayList<>();
+                phone=new ArrayList<>();
+                username=new ArrayList<>();
+
+
+            }
+
+
+            holder.adapter=new RecyclerUpcomingEventsMain(holder.relativeLayout,LoggedIn,ctx,imgUrl,name,date,time, desc,phone, username,Today);
+            holder.rv.setAdapter(holder.adapter);
+
+
+        }
+        else if (position==2){
+
+
+            TodayEventsHigh todayEventsHigh=new TodayEventsHigh(ctx);
+
+            todayEventsHigh.getData(new TodayEventsHigh.AsyncCallback() {
+                @Override
+                public void onSuccess(List<List<String>> list) {
+
+                    holder.adapter=new RecyclerTodayAdapter(ctx,list.get(0),list.get(1),list.get(2),list.get(3),list.get(4),list.get(5));
+                    holder.rv.setAdapter(holder.adapter);
+
+
+                }
+            });
+
+        }
 
     }
 
     @Override
     public int getItemCount() {
 
-        return 2;
+        return 3;
 
     }
 }

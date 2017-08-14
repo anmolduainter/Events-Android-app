@@ -125,16 +125,6 @@ public class RecyclerUpcomingEventsMain extends RecyclerView.Adapter<RecyclerUpc
 //        holder.desc1.setText(desc.get(position));
 
 
-        Glide.with(ctx).load(imgUrl.get(0)).bitmapTransform(new BlurTransformation(ctx,100)).into(new SimpleTarget<GlideDrawable>() {
-            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-            @Override
-            public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
-
-                relativeLayout.setBackground(resource);
-
-            }
-        });
-
     }
 
     @Override
