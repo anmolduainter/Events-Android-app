@@ -22,6 +22,7 @@
         <activity android:name=".Login"></activity>
         <activity android:name=".Events.RegisteredEvents"></activity>
         <activity android:name=".Events.DetailsOfEvents"></activity>
+        <activity android:name=".OnSiteWeb.onsite"></activity>
     </application>
 
 </manifest>

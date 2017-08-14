@@ -1,6 +1,7 @@
 package com.example.anmol.events.Adapter.EventsHigh;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.example.anmol.events.OnSiteWeb.onsite;
 import com.example.anmol.events.R;
 import com.squareup.picasso.Picasso;
 
@@ -67,6 +69,23 @@ public class RecyclerTechnologyAdapter extends RecyclerView.Adapter<RecyclerTech
             genr=itemView.findViewById(R.id.EventsHighTodayGenre);
 
             rv=itemView.findViewById(R.id.RelativeMainEventsHighToday);
+
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    int pos=getAdapterPosition();
+
+                    Intent i=new Intent(ctx,onsite.class);
+                    i.putExtra("link",href.get(pos));
+                    ctx.startActivity(i);
+
+                }
+            });
+
+
+
 
         }
     }

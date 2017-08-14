@@ -24,6 +24,7 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.example.anmol.events.Adapter.RecyclerAllEvents;
 import com.example.anmol.events.Login;
+import com.example.anmol.events.OnSiteWeb.onsite;
 import com.example.anmol.events.PostData.RegisterEvents;
 import com.example.anmol.events.R;
 import com.squareup.picasso.Picasso;
@@ -80,6 +81,20 @@ public class RecyclerTodayAdapter extends RecyclerView.Adapter<RecyclerTodayAdap
             genr=itemView.findViewById(R.id.EventsHighTodayGenre);
 
             rv=itemView.findViewById(R.id.RelativeMainEventsHighToday);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    int pos=getAdapterPosition();
+
+                    Intent i=new Intent(ctx,onsite.class);
+                    i.putExtra("link",href.get(pos));
+                    ctx.startActivity(i);
+
+                }
+            });
+
 
         }
     }
