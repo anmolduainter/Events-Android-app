@@ -18,7 +18,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.anmol.events.Adapter.EventsHigh.RecyclerOutDoorAdapter;
+import com.example.anmol.events.Adapter.EventsHigh.RecyclerTechnologyAdapter;
 import com.example.anmol.events.Adapter.EventsHigh.RecyclerTodayAdapter;
+import com.example.anmol.events.Data.EventsHigh.OutDoorsEventsHigh;
+import com.example.anmol.events.Data.EventsHigh.TechnologyEventsHigh;
 import com.example.anmol.events.Data.EventsHigh.TodayEventsHigh;
 import com.example.anmol.events.Data.EventsRegistered;
 import com.example.anmol.events.Events.DetailsOfEvents;
@@ -45,7 +49,7 @@ public class RecyclerUpComingEventsVertical extends RecyclerView.Adapter<Recycle
     Context ctx;
     ImageView imageView;
 
-    String s[]={"UpComing Events","Today Events","Events High(Today)"};
+    String s[]={"UpComing Events","Today Events","Events High(Today)","Technology(Events High)","OutDoor(Events High)"};
 
     List<List<List<String>>> ResultingList;
 
@@ -167,12 +171,50 @@ public class RecyclerUpComingEventsVertical extends RecyclerView.Adapter<Recycle
 
         }
 
+        else if (position==3){
+
+
+            TechnologyEventsHigh technologyEventsHigh=new TechnologyEventsHigh(ctx);
+
+            technologyEventsHigh.getData(new TechnologyEventsHigh.AsyncCallback() {
+                @Override
+                public void onSuccess(List<List<String>> list) {
+
+                    holder.adapter=new RecyclerTechnologyAdapter(ctx,list.get(0),list.get(1),list.get(2),list.get(3),list.get(4),list.get(5));
+                    holder.rv.setAdapter(holder.adapter);
+
+
+                }
+            });
+
+
+        }
+
+
+        else if (position==4){
+
+
+            OutDoorsEventsHigh outDoorsEventsHigh=new OutDoorsEventsHigh(ctx);
+
+            outDoorsEventsHigh.getData(new OutDoorsEventsHigh.AsyncCallback() {
+                @Override
+                public void onSuccess(List<List<String>> list) {
+
+                    holder.adapter=new RecyclerOutDoorAdapter(ctx,list.get(0),list.get(1),list.get(2),list.get(3),list.get(4),list.get(5));
+                    holder.rv.setAdapter(holder.adapter);
+
+                }
+            });
+
+
+        }
+
     }
 
     @Override
     public int getItemCount() {
 
-        return 3;
+        return 5;
 
     }
 }
