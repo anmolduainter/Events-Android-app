@@ -27,7 +27,7 @@ public class login {
 
     String TAG="MOVIE";
 
-    final static String URL="http://192.168.0.104:3000/login/and";
+    final static String URL="http://192.168.0.106:3000/login/and";
 
     AsyncHttpClient asyncHttpClient;
     RequestParams requestParams;

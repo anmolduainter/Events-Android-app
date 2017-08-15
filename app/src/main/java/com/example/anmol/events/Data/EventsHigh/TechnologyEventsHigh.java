@@ -20,7 +20,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class TechnologyEventsHigh {
 
-    final static String URL="http://192.168.0.104:3000/android/EventsHigh/Technology";
+    final static String URL="http://192.168.0.106:3000/android/EventsHigh/Technology";
 
     AsyncHttpClient asyncHttpClient;
     RequestParams requestParams;

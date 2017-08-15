@@ -25,7 +25,7 @@ public class TodayEventsHigh {
 
 
 
-    final static String URL="http://192.168.0.104:3000/android/EventsHigh/Today";
+    final static String URL="http://192.168.0.106:3000/android/EventsHigh/Today";
 
     AsyncHttpClient asyncHttpClient;
     RequestParams requestParams;
@@ -80,6 +80,8 @@ public class TodayEventsHigh {
                     Actualli.add(datetime);
                     Actualli.add(evenue);
                     Actualli.add(genre);
+
+                    System.out.println(Actualli);
 
                     asyncCallback.onSuccess(Actualli);
 

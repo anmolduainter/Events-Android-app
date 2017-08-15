@@ -37,8 +37,8 @@ public class EventsAll {
     public EventsAll(Context ctx, String event){
         this.event=event;
         this.ctx=ctx;
-        hash.put("AllEvents","http://192.168.0.104:3000/android/Events/AllEvents");
-        hash.put("RegisteredEvents","http://192.168.0.104:3000/Events/RegisteredEvents/a");
+        hash.put("AllEvents","http://192.168.0.106:3000/android/Events/AllEvents");
+        hash.put("RegisteredEvents","http://192.168.0.106:3000/Events/RegisteredEvents/a");
     }
 
     public void getAll(final VolleyCallback callback){

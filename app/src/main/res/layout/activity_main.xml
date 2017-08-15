@@ -6,7 +6,8 @@
     tools:openDrawer="start"
 
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <include
@@ -20,45 +21,9 @@
         android:layout_width="280dp"
         android:layout_gravity="start"
         android:fitsSystemWindows="false"
+        app:menu="@menu/activity_main_drawer"
+        app:headerLayout="@layout/nav_header_main"
         android:layout_height="match_parent">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        <FrameLayout
-            android:id="@+id/FrameNav"
-            android:layout_width="match_parent"
-            android:layout_height="200dp">
-            <RelativeLayout
-                android:id="@+id/RelativeLayoutnav"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/Login_text"
-                    android:layout_alignParentBottom="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Login"
-                    android:textSize="20dp"
-                    android:textColor="#fff"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginLeft="20dp"/>
-
-            </RelativeLayout>
-        </FrameLayout>
-
-        <android.support.v7.widget.RecyclerView
-            android:layout_below="@id/FrameNav"
-            android:id="@+id/Recyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </android.support.v7.widget.RecyclerView>
-
-        </RelativeLayout>
     </android.support.design.widget.NavigationView>
 
 

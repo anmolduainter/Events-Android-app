@@ -22,20 +22,13 @@ public class onsite extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.onsiteweb);
-
         webView= (WebView) findViewById(R.id.WebView);
-
         String url="https://www.eventshigh.com"+getIntent().getExtras().getString("link");
-
         WebViewClient webViewClient=new WebViewClient();
-
         webView.setWebViewClient(webViewClient);
-
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-
         webView.loadUrl(url);
-
 
     }
 }

@@ -20,7 +20,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class OutDoorsEventsHigh {
 
-    final static String URL="http://192.168.0.104:3000/android/EventsHigh/OutDoors";
+    final static String URL="http://192.168.0.106:3000/android/EventsHigh/OutDoors";
 
         AsyncHttpClient asyncHttpClient;
         RequestParams requestParams;

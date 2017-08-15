@@ -4,4 +4,5 @@
     <string name="close_drawer">CloseDrawer</string>
     <string name="Login_status_File">com.example.anmol.events.PREFERENCE_FILE_KEY</string>
     <string name="LOGIN_STATUS">LOGIN_STATUS</string>
+    <string name="action_settings">Settings</string>
 </resources>
