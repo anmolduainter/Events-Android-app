@@ -4,15 +4,27 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_camera"
-            android:title="Import" />
+            android:title="UpcomingEvents" />
         <item
             android:id="@+id/nav_gallery"
 
-            android:title="Gallery" />
+            android:title="TodayEvents" />
         <item
             android:id="@+id/nav_slideshow"
 
-            android:title="Slideshow" />
+            android:title="RegisteredEvents" />
+
+
+        <item
+            android:id="@+id/Login1"
+
+            android:title="BookMark Events" />
+
+        <item
+            android:id="@+id/YourEvents"
+
+            android:title="Your Events" />
+
         <item
             android:id="@+id/Login"
 
