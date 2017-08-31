@@ -14,9 +14,6 @@ import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 
-/**
- * Created by anmol on 15/8/17.
- */
 
 public class OutDoorsEventsHigh {
 

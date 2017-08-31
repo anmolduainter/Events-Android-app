@@ -3,30 +3,30 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/UpcomingEventsMenu"
             android:title="UpcomingEvents" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/TodayEventsMenu"
 
             android:title="TodayEvents" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/RegisteredEventsMenu"
 
             android:title="RegisteredEvents" />
 
 
         <item
-            android:id="@+id/Login1"
+            android:id="@+id/BookMarkEventsMenu"
 
             android:title="BookMark Events" />
 
         <item
-            android:id="@+id/YourEvents"
+            android:id="@+id/YourEventsMenu"
 
             android:title="Your Events" />
 
         <item
-            android:id="@+id/Login"
+            android:id="@+id/LoginMenu"
 
             android:title="Login" />
     </group>

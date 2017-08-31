@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:id="@+id/RelativeLayoutDetailsOfEvents"
+<RelativeLayout
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,6 +13,7 @@
         >
 
         <RelativeLayout
+            android:id="@+id/RelativeLayoutDetailsOfEvents"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -20,22 +21,107 @@
                 android:id="@+id/ImageViewDetailsOfEvents"
                 android:transitionName="Event_Photo"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_centerInParent="true"/>
+                android:layout_height="300dp"/>
 
             <RelativeLayout
+                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_below="@id/ImageViewDetailsOfEvents"
                 android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/UpcomingEventsTitle"
                 android:layout_height="wrap_content"
+                android:textColor="#fff"
                 android:layout_width="wrap_content"
-                android:text="HELLO"
-                android:layout_marginTop="20dp"
-                android:textSize="30dp"
+                android:text="Title"
+                android:textStyle="bold"
+                android:textSize="40dp"
                 android:layout_centerHorizontal="true"
                ></TextView>
+
+                <TextView
+                    android:id="@+id/dateUpcimgEvents"
+                    android:layout_below="@id/UpcomingEventsTitle"
+                    android:layout_width="wrap_content"
+                    android:text="Date : - "
+                    android:textColor="#fff"
+                    android:textSize="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_height="wrap_content" />
+
+
+                <TextView
+                    android:layout_below="@id/UpcomingEventsTitle"
+                    android:layout_width="wrap_content"
+                    android:text="22/04/2017 "
+                    android:textColor="#fff"
+                    android:layout_toRightOf="@id/dateUpcimgEvents"
+                    android:textSize="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/timeUpcimgEvents"
+                    android:layout_below="@id/dateUpcimgEvents"
+                    android:layout_width="wrap_content"
+                    android:text="Time : - "
+                    android:textColor="#fff"
+                    android:textSize="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_height="wrap_content" />
+
+
+                <TextView
+                    android:layout_below="@id/dateUpcimgEvents"
+                    android:layout_width="wrap_content"
+                    android:text="8:00 AM - 9:00 PM"
+                    android:textColor="#fff"
+                    android:layout_toRightOf="@id/timeUpcimgEvents"
+                    android:textSize="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_height="wrap_content" />
+
+                <FrameLayout
+                    android:id="@+id/dividerUpcomingEvents"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/divider"
+                    android:layout_below="@id/timeUpcimgEvents"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"></FrameLayout>
+
+                <TextView
+                    android:id="@+id/DescriptionUpcimgEvents"
+                    android:layout_below="@id/dividerUpcomingEvents"
+                    android:layout_width="wrap_content"
+                    android:text="Description"
+                    android:textStyle="bold"
+                    android:textColor="#fff"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="25dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_below="@id/DescriptionUpcimgEvents"
+                    android:layout_width="wrap_content"
+                    android:text="Hello this is an event event This is an Event
+Hello this is an event event This is an EventHello this is an event event This is an EventHello this is an event event This is an EventHello this is an event event This is an EventHello this is an event event This is an EventHello this is an event event This is an EventHello this is an event event This is an EventHello this is an event event This is an EventHello this is an event event This is an Event"
+                    android:textStyle="italic"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center_horizontal"
+                    android:textColor="#fff"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="18dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_height="wrap_content" />
+
+
             </RelativeLayout>
 
         </RelativeLayout>

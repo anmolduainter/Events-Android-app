@@ -1,6 +1,7 @@
 package com.example.anmol.events;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.Image;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
 
         l=new login(MainActivity.this);
@@ -118,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 final boolean LoggedIn=jsonObject.getBoolean("loggedIn");
 
-                MenuItem login=menu.findItem(R.id.Login);
+                MenuItem login=menu.findItem(R.id.LoginMenu);
 
                 if (LoggedIn) {
                     login.setTitle("LogOut");
@@ -205,13 +207,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.UpcomingEventsMenu) {
+            Intent i=new Intent(MainActivity.this,AllEvents.class);
+            startActivity(i);
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.BookMarkEventsMenu) {
 
-        } else if (id == R.id.Login) {
+        } else if (id == R.id.RegisteredEventsMenu) {
+
+        } else if (id == R.id.LoginMenu) {
 
             l.Login(new login.AsyncCallback() {
                 @Override
