@@ -42,6 +42,7 @@ import com.example.anmol.events.Data.EventsAll;
 import com.example.anmol.events.Data.EventsToday;
 import com.example.anmol.events.Data.login;
 import com.example.anmol.events.Events.AllEvents;
+import com.example.anmol.events.Events.RegisteredEvents;
 import com.example.anmol.events.Utils.CircleTransform;
 import com.squareup.picasso.Picasso;
 
@@ -214,6 +215,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.BookMarkEventsMenu) {
 
         } else if (id == R.id.RegisteredEventsMenu) {
+
+            Intent i=new Intent(MainActivity.this, RegisteredEvents.class);
+            startActivity(i);
 
         } else if (id == R.id.LoginMenu) {
 
