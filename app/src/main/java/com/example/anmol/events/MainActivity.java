@@ -76,12 +76,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        //Setting ToolBar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
 
+        //Checking Login Status
         l=new login(MainActivity.this);
 
+        //Navigation Bar Layout
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar,R.string.open_drawer,R.string.close_drawer);
@@ -91,20 +96,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        menu=navigationView.getMenu();
 
+        // Navigation View Header Part
+        menu=navigationView.getMenu();
         View navHeader = navigationView.getHeaderView(0);
 
+        //Navigation Header TextView
         tx= (TextView) navHeader.findViewById(R.id.Login_text);
 
+        //Navigation Header Background Image
         ImageView imageViewNav=navHeader.findViewById(R.id.imageViewNav);
 
+        //Navigation Header Profile Image
         ImageView profileImage=navHeader.findViewById(R.id.ProfileImageNav);
-
         Picasso.with(MainActivity.this).load("https://api.androidhive.info/images/nav-menu-header-bg.jpg").fit().into(imageViewNav);
-
         Glide.with(MainActivity.this).load(url).thumbnail(0.5f).bitmapTransform(new CircleTransform(this)).into(profileImage);
-
 
         DisplayMetrics displayMetrics=new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);

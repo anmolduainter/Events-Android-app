@@ -107,6 +107,10 @@ public class RecyclerUpComingEventsVertical extends RecyclerView.Adapter<Recycle
         holder.tx.setText(s[position]);
         holder.rv.setLayoutManager(holder.layoutManager);
 
+        // Horizontal Recycler View
+
+        // Step By Step
+
         if (position==0){
 
             imgUrl=ResultingList.get(position).get(0);

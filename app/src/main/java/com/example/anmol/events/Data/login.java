@@ -19,9 +19,6 @@ import cz.msebera.android.httpclient.Header;
 
 public class login {
 
-
-
-
     String email,password;
     Context ctx;
 
@@ -97,10 +94,5 @@ public class login {
     public interface AsyncCallback{
         void onSuccess(JSONObject jsonObject) throws JSONException;
     }
-
-
-
-
-
 
 }

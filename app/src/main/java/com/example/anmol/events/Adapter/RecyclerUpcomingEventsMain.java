@@ -36,9 +36,6 @@ import java.util.List;
 
 import jp.wasabeef.glide.transformations.BlurTransformation;
 
-/**
- * Created by anmol on 13/8/17.
- */
 
 public class RecyclerUpcomingEventsMain extends RecyclerView.Adapter<RecyclerUpcomingEventsMain.ViewHolder> {
 

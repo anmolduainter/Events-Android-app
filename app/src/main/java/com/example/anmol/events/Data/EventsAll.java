@@ -19,16 +19,27 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.*;
 
-/**
- * Created by anmol on 30/7/17.
- */
+
 
 public class EventsAll {
 
 
     RequestQueue rq;
     Context ctx;
+
+    /* Data :-
+          1. Event Image Url
+          2. Event name
+          3. Event date
+          4. Event time
+          4. Event desc
+          5. Event phone
+          6. Event username
+     */
+
     List<String> imgUrl,name,date,time,desc,phone,username;
+
+    //Which Type of Event user wants to see  : - AllEvents or Registered Events
     String event;
     HashMap<String,String> hash=new HashMap<String,String>();
 
@@ -41,8 +52,11 @@ public class EventsAll {
         hash.put("RegisteredEvents","http://192.168.0.106:3000/Events/RegisteredEvents/a");
     }
 
+
+    //Getting All Events
     public void getAll(final VolleyCallback callback){
 
+        //Getting Url for the event which the user wants to see.
         String URL = null;
 
         for(Map.Entry m:hash.entrySet()){
@@ -53,6 +67,8 @@ public class EventsAll {
 
         }
         rq= Volley.newRequestQueue(ctx);
+
+        //Get Request is being done here
         JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET,URL, null,
 
                 new Response.Listener<JSONObject>() {
@@ -60,6 +76,7 @@ public class EventsAll {
                     public void onResponse(JSONObject response) {
 
 
+                        //Initializing All ArrayList
                         imgUrl=new ArrayList<>();
                         name=new ArrayList<>();
                         date=new ArrayList<>();
@@ -70,14 +87,13 @@ public class EventsAll {
                         Actualli=new ArrayList<>();
 
                         try {
-                            //                   progressDialog.cancel();
+
                             JSONArray jsonArray=response.getJSONArray("Result");
 
                             for (int i=0;i<jsonArray.length();i++){
 
                                 JSONObject object=jsonArray.getJSONObject(i);
 
-                                //  System.out.println(object);
 
                                 imgUrl.add(object.getString("imgUrl"));
                                 name.add(object.getString("name"));

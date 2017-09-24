@@ -23,7 +23,7 @@ import cz.msebera.android.httpclient.Header;
 public class EventsRegistered {
 
 
-    final static String URL="http://192.168.0.106:3000/android/Events/RegisteredEvents";
+    final static String URL="http://192.168.43.59:3000/android/Events/RegisteredEvents";
 
     AsyncHttpClient asyncHttpClient;
     RequestParams requestParams;
