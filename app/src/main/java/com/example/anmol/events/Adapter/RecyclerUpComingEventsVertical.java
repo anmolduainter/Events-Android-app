@@ -18,9 +18,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.anmol.events.Adapter.BookMyShow.BookMyShowAdapter;
 import com.example.anmol.events.Adapter.EventsHigh.RecyclerOutDoorAdapter;
 import com.example.anmol.events.Adapter.EventsHigh.RecyclerTechnologyAdapter;
 import com.example.anmol.events.Adapter.EventsHigh.RecyclerTodayAdapter;
+import com.example.anmol.events.Data.BookMyShow.bookMyShowData;
 import com.example.anmol.events.Data.EventsHigh.OutDoorsEventsHigh;
 import com.example.anmol.events.Data.EventsHigh.TechnologyEventsHigh;
 import com.example.anmol.events.Data.EventsHigh.TodayEventsHigh;
@@ -209,16 +211,37 @@ public class RecyclerUpComingEventsVertical extends RecyclerView.Adapter<Recycle
 
                 }
             });
+        }
 
+
+        // Book My Show Event
+        else if (position==5){
+
+            bookMyShowData bookMyShowData=new bookMyShowData(ctx);
+            bookMyShowData.getData(new bookMyShowData.bookMyShowcallback() {
+                @Override
+                public void getData(List<List<String>> li) {
+
+                    List<String> image=li.get(0);
+                    List<String> titleL=li.get(1);
+                    List<String> dateL=li.get(2);
+                    List<String> tagL=li.get(3);
+                    List<String> buyNowL=li.get(4);
+
+                    holder.adapter=new BookMyShowAdapter(ctx,image,titleL,dateL,tagL,buyNowL);
+
+                }
+            });
 
         }
+
 
     }
 
     @Override
     public int getItemCount() {
 
-        return 5;
+        return 6;
 
     }
 }
