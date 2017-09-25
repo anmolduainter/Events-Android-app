@@ -14,6 +14,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -28,12 +29,19 @@ public class bookMyShowData {
     List<List<String>> li;
 
     // URL must be changed
-    private static final String URL= "http://localhost:3000/android/BookMyShow";
+    private static final String URL= "http://192.168.0.106:3000/android/BookMyShow";
 
 
     // consructor
     public bookMyShowData(Context ctx){
         this.ctx=ctx;
+        imageL=new ArrayList<>();
+        titleL=new ArrayList<>();
+        dayL=new ArrayList<>();
+        dateL=new ArrayList<>();
+        tagL=new ArrayList<>();
+        buyNowL=new ArrayList<>();
+        li=new ArrayList<>();
     }
 
 
@@ -46,6 +54,9 @@ public class bookMyShowData {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
+
+
+                        System.out.println(response);
 
                         for (int i=0;i<response.length();i++){
                             try {
@@ -84,6 +95,8 @@ public class bookMyShowData {
                         li.add(dateL);
                         li.add(tagL);
                         li.add(buyNowL);
+
+                        System.out.println("li : " + li);
 
                         CallBack.getData(li);
 

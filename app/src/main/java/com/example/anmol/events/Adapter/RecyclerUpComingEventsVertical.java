@@ -1,47 +1,29 @@
 package com.example.anmol.events.Adapter;
 
-import android.animation.ArgbEvaluator;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.bumptech.glide.Glide;
 import com.example.anmol.events.Adapter.BookMyShow.BookMyShowAdapter;
 import com.example.anmol.events.Adapter.EventsHigh.RecyclerOutDoorAdapter;
 import com.example.anmol.events.Adapter.EventsHigh.RecyclerTechnologyAdapter;
 import com.example.anmol.events.Adapter.EventsHigh.RecyclerTodayAdapter;
+import com.example.anmol.events.Adapter.Insider.InsiderAdapter;
 import com.example.anmol.events.Data.BookMyShow.bookMyShowData;
 import com.example.anmol.events.Data.EventsHigh.OutDoorsEventsHigh;
 import com.example.anmol.events.Data.EventsHigh.TechnologyEventsHigh;
 import com.example.anmol.events.Data.EventsHigh.TodayEventsHigh;
-import com.example.anmol.events.Data.EventsRegistered;
-import com.example.anmol.events.Events.DetailsOfEvents;
-import com.example.anmol.events.Login;
-import com.example.anmol.events.PostData.RegisterEvents;
+import com.example.anmol.events.Data.Insider.InsiderData;
 import com.example.anmol.events.R;
-import com.squareup.picasso.Picasso;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by anmol on 13/8/17.
- */
+
 
 public class RecyclerUpComingEventsVertical extends RecyclerView.Adapter<RecyclerUpComingEventsVertical.ViewHolder> {
 
@@ -51,7 +33,7 @@ public class RecyclerUpComingEventsVertical extends RecyclerView.Adapter<Recycle
     Context ctx;
     ImageView imageView;
 
-    String s[]={"UpComing Events","Today Events","Events High(Today)","Technology(Events High)","OutDoor(Events High)"};
+    String s[]={"UpComing Events","Today Events","BookMyShow","Insider Events","Technology(Events High)","OutDoor(Events High)","Events High(Today)"};
 
     List<List<List<String>>> ResultingList;
 
@@ -159,25 +141,54 @@ public class RecyclerUpComingEventsVertical extends RecyclerView.Adapter<Recycle
 
 
         }
+
+        // Book My Show Event
         else if (position==2){
 
-
-            TodayEventsHigh todayEventsHigh=new TodayEventsHigh(ctx);
-
-            todayEventsHigh.getData(new TodayEventsHigh.AsyncCallback() {
+            bookMyShowData bookMyShowData=new bookMyShowData(ctx);
+            bookMyShowData.getData(new bookMyShowData.bookMyShowcallback() {
                 @Override
-                public void onSuccess(List<List<String>> list) {
+                public void getData(List<List<String>> li) {
 
-                    holder.adapter=new RecyclerTodayAdapter(ctx,list.get(0),list.get(1),list.get(2),list.get(3),list.get(4),list.get(5));
+                    List<String> image=li.get(0);
+                    List<String> titleL=li.get(1);
+                    List<String> dateL=li.get(2);
+                    List<String> tagL=li.get(3);
+                    List<String> buyNowL=li.get(4);
+
+                    System.out.println("");
+
+                    holder.adapter=new BookMyShowAdapter(ctx,image,titleL,dateL,tagL,buyNowL);
                     holder.rv.setAdapter(holder.adapter);
 
+                }
+            });
+
+
+        }
+
+        //Insider Events Data
+        else if (position==3){
+
+            InsiderData insiderData=new InsiderData(ctx);
+            insiderData.getDataInsider(new InsiderData.InsiderCallBack() {
+                @Override
+                public void result(List<List<String>> list) {
+
+                    List<String> name=list.get(0);
+                    List<String> image=list.get(1);
+                    List<String> date=list.get(2);
+                    List<String> place=list.get(3);
+
+                    holder.adapter=new InsiderAdapter(ctx,image,name,date,place);
+                    holder.rv.setAdapter(holder.adapter);
 
                 }
             });
 
         }
 
-        else if (position==3){
+        else if (position==4){
 
 
             TechnologyEventsHigh technologyEventsHigh=new TechnologyEventsHigh(ctx);
@@ -197,7 +208,7 @@ public class RecyclerUpComingEventsVertical extends RecyclerView.Adapter<Recycle
         }
 
 
-        else if (position==4){
+        else if (position==5){
 
 
             OutDoorsEventsHigh outDoorsEventsHigh=new OutDoorsEventsHigh(ctx);
@@ -213,26 +224,21 @@ public class RecyclerUpComingEventsVertical extends RecyclerView.Adapter<Recycle
             });
         }
 
+        else if (position==6){
 
-        // Book My Show Event
-        else if (position==5){
 
-            bookMyShowData bookMyShowData=new bookMyShowData(ctx);
-            bookMyShowData.getData(new bookMyShowData.bookMyShowcallback() {
+            TodayEventsHigh todayEventsHigh=new TodayEventsHigh(ctx);
+
+            todayEventsHigh.getData(new TodayEventsHigh.AsyncCallback() {
                 @Override
-                public void getData(List<List<String>> li) {
+                public void onSuccess(List<List<String>> list) {
 
-                    List<String> image=li.get(0);
-                    List<String> titleL=li.get(1);
-                    List<String> dateL=li.get(2);
-                    List<String> tagL=li.get(3);
-                    List<String> buyNowL=li.get(4);
+                    holder.adapter=new RecyclerTodayAdapter(ctx,list.get(0),list.get(1),list.get(2),list.get(3),list.get(4),list.get(5));
+                    holder.rv.setAdapter(holder.adapter);
 
-                    holder.adapter=new BookMyShowAdapter(ctx,image,titleL,dateL,tagL,buyNowL);
 
                 }
             });
-
         }
 
 
@@ -241,7 +247,7 @@ public class RecyclerUpComingEventsVertical extends RecyclerView.Adapter<Recycle
     @Override
     public int getItemCount() {
 
-        return 6;
+        return 7;
 
     }
 }

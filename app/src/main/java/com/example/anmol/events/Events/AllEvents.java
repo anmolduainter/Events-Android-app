@@ -1,57 +1,33 @@
 package com.example.anmol.events.Events;
 
-import android.app.ProgressDialog;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.graphics.Palette;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
+import android.view.Gravity;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.AlphaAnimation;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.anmol.events.Adapter.RecyclerAllEvents;
 import com.example.anmol.events.Data.EventsAll;
 import com.example.anmol.events.Data.login;
 import com.example.anmol.events.R;
 import com.squareup.picasso.Picasso;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
 
-/**
- * Created by anmol on 27/7/17.
- */
 
 public class AllEvents extends AppCompatActivity {
 
@@ -71,15 +47,16 @@ public class AllEvents extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            Window w = getWindow();
-            w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//            Window w = getWindow();
+//            w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+//        }
 
         setContentView(R.layout.allevents);
 
 
-      //  toolbar= (Toolbar) findViewById(R.id.tooolbarallEve);
+        toolbar= (Toolbar) findViewById(R.id.AllEventsToolBar);
+        setSupportActionBar(toolbar);
         collapsingToolbarLayout= (CollapsingToolbarLayout) findViewById(R.id.collapsinggToolbarallEve);
         appBarLayout= (AppBarLayout) findViewById(R.id.appBaralleve);
 
@@ -106,15 +83,15 @@ public class AllEvents extends AppCompatActivity {
                 }
 
                 if (verticalOffset * -1 >= scroll-150 ){
-                    collapsingToolbarLayout.setTitle("EventsAll");
+                    collapsingToolbarLayout.setTitle("Upcoming Events");
                     collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
 
                 }
 
                 else{
-
-                    collapsingToolbarLayout.setTitle(" ");
-
+                    collapsingToolbarLayout.setTitle("Upcoming Events");
+                    collapsingToolbarLayout.setExpandedTitleTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+                    collapsingToolbarLayout.setExpandedTitleGravity(Gravity.CENTER);
                 }
 
 
@@ -159,10 +136,13 @@ public class AllEvents extends AppCompatActivity {
 
                                                     Picasso.with(getApplicationContext()).load(result.get(0).get(i)).fit().into(imageView);
 
-                                                    AlphaAnimation alpha=new AlphaAnimation(0,1);
-                                                    alpha.setDuration(1000);
+                                                    ScaleAnimation scaleAnimation=new ScaleAnimation(0,1,0,1);
 
-                                                    imageView.startAnimation(alpha);
+                                                    scaleAnimation.setDuration(400);
+
+                                                    scaleAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
+
+                                                    imageView.startAnimation(scaleAnimation);
 
                                                     i++;
 

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView
-    android:layout_height="300dp"
+    android:layout_height="320dp"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:elevation="2dp"
-    android:layout_marginRight="2dp"
-    android:layout_marginLeft="2dp"
+    android:elevation="8dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginLeft="10dp"
     android:layout_marginTop="10dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -27,7 +27,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="130dp"
             android:background="#8000"
             android:layout_alignParentBottom="true">
 
@@ -36,10 +36,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rock-Climbing"
-                android:textSize="15dp"
+                android:textSize="18dp"
                 android:textColor="#fff"
                 android:textStyle="bold"
-                android:layout_marginLeft="5dp"/>
+                android:layout_marginLeft="10dp"/>
 
             <TextView
                 android:id="@+id/Date"
@@ -51,7 +51,7 @@
                 android:textSize="15dp"
                 android:textStyle="bold"
                 android:textColor="#fff"
-                android:layout_marginLeft="5dp"/>
+                android:layout_marginLeft="10dp"/>
 
 
 
@@ -62,7 +62,8 @@
                 android:layout_below="@id/Date"
                 android:layout_marginTop="10dp"
                 android:text="8:00 AM - 9:00 PM"
-                android:textSize="10dp"
+                android:layout_marginLeft="10dp"
+                android:textSize="15dp"
                 android:textColor="#fff"
                 android:textStyle="bold"
                 />
@@ -74,7 +75,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/Time"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
                 android:text="Rock event"
                 android:textSize="15dp"
                 android:textColor="#fff"
@@ -86,6 +88,7 @@
                 android:id="@+id/Register_All_Events_Button"
                 android:layout_width="100dp"
                 android:text="REGISTER"
+                android:textStyle="bold"
                 android:textColor="#fff"
                 android:background="@null"
                 android:layout_alignParentRight="true"
@@ -95,11 +98,10 @@
 
             <Button
                 android:id="@+id/BookMark_All_Events"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@id/Register_All_Events_Button"
-                android:backgroundTint="@color/colorPrimary"
                 android:background="@drawable/bookmark"
                 android:layout_centerHorizontal="true"/>
 

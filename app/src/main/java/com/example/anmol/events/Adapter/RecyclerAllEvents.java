@@ -6,33 +6,28 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ViewAnimator;
 
 import com.example.anmol.events.Login;
-import com.example.anmol.events.MainActivity;
 import com.example.anmol.events.PostData.RegisterEvents;
 import com.example.anmol.events.R;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.List;
 
-/**
- * Created by anmol on 27/7/17.
- */
 
 public class RecyclerAllEvents extends RecyclerView.Adapter<RecyclerAllEvents.ViewHolder> {
 
@@ -77,14 +72,19 @@ public class RecyclerAllEvents extends RecyclerView.Adapter<RecyclerAllEvents.Vi
             Register1=itemView.findViewById(R.id.Register_All_Events_Button);
             BookMark=itemView.findViewById(R.id.BookMark_All_Events);
 
+            // On Clicking Register
             Register1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View view) {
 
+                    // Getting Adapter Position
                     int pos=getAdapterPosition();
 
+
+                    // If the user is Logged In
                     if (LoggedIn){
 
+                        // pos - 0 for registered events
                         RegisterEvents registerEvents=new RegisterEvents(ctx,name.get(pos),date.get(pos),time.get(pos),0);
 
                         registerEvents.POST(new RegisterEvents.AsyncCallBack() {
@@ -117,8 +117,6 @@ public class RecyclerAllEvents extends RecyclerView.Adapter<RecyclerAllEvents.Vi
                     }
 
 
-                    Toast.makeText(ctx,String.valueOf(pos),Toast.LENGTH_LONG).show();
-
                 }
             });
 
@@ -135,15 +133,18 @@ public class RecyclerAllEvents extends RecyclerView.Adapter<RecyclerAllEvents.Vi
                         final RegisterEvents registerEvents=new RegisterEvents(ctx,name.get(pos),date.get(pos),time.get(pos),1);
 
                         registerEvents.POST(new RegisterEvents.AsyncCallBack() {
+                            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                             @Override
                             public void onSuccess(JSONObject jsonObject) throws JSONException {
 
                                 boolean success=jsonObject.getBoolean("success");
                                 if (success){
-                                    BookMark.setBackgroundColor(Color.GRAY);
+                                    BookMark.setBackgroundResource(R.drawable.ic_check_white_48dp);
                                 }
                                 else{
-                                    BookMark.setBackgroundColor(Color.WHITE);
+
+                                    BookMark.setBackgroundResource(R.drawable.bookmark);
+
                                 }
 
                             }

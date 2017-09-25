@@ -16,9 +16,6 @@ import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 
-/**
- * Created by anmol on 1/8/17.
- */
 
 public class EventsRegistered {
 

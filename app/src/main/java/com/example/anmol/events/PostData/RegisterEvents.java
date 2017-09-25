@@ -12,9 +12,7 @@ import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
 
-/**
- * Created by anmol on 1/8/17.
- */
+
 
 public class RegisterEvents {
 
@@ -22,6 +20,12 @@ public class RegisterEvents {
     AsyncHttpClient asyncHttpClient;
     RequestParams requestParams;
     int pos;
+
+
+    /*
+        for registering Events use pos = 0
+        for bookmark events pos = 1
+     */
 
     private static final String URL[]={"http://192.168.0.106:3000/Events/Register",
                                        "http://192.168.0.106:3000/Events/BookMark"};

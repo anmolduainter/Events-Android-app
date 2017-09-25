@@ -16,6 +16,7 @@
             android:id="@+id/collapsinggToolbarallEve"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#000"
             app:contentScrim="@color/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
@@ -23,8 +24,14 @@
                 android:id="@+id/imageAllEventsTop"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:alpha="0.7"
                 android:background="@drawable/mountain"/>
 
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/AllEventsToolBar"
+                android:layout_width="match_parent"
+                android:layout_height="80dp">
+            </android.support.v7.widget.Toolbar>
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
