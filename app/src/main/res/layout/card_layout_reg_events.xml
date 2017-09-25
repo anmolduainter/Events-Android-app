@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <android.support.v7.widget.CardView
-    android:layout_height="300dp"
+    android:layout_height="320dp"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:elevation="2dp"
-    android:layout_marginLeft="20dp"
-    android:layout_marginRight="20dp"
-    android:layout_marginTop="20dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <RelativeLayout
@@ -18,8 +18,8 @@
         <ImageView
             android:id="@+id/RegEventsImage"
             android:background="@drawable/mountain"
-            android:layout_width="150dp"
-            android:layout_height="150dp" />
+            android:layout_width="200dp"
+            android:layout_height="200dp" />
 
         <TextView
             android:id="@+id/RegName"
@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Rock-Climbing"
-            android:textSize="25dp"
+            android:textSize="20dp"
             android:textStyle="bold"
             android:layout_marginLeft="5dp"/>
 
@@ -41,7 +41,7 @@
             android:layout_below="@id/RegName"
             android:layout_marginTop="10dp"
             android:text="2017-11-10"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:textStyle="bold"
             android:layout_marginLeft="5dp"/>
 
@@ -53,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/RegDate"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:text="8:00 AM - 9:00 PM"
             android:textSize="20dp"
             android:textStyle="bold"
@@ -99,7 +99,7 @@
             android:text="Not REGISTER"
             android:textStyle="bold"
             android:textColor="#fff"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="40dp"
             android:textSize="15dp"
             android:background="@android:color/holo_orange_dark"
             android:layout_centerHorizontal="true"/>

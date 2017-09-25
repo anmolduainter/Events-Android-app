@@ -20,7 +20,7 @@ import cz.msebera.android.httpclient.Header;
 public class EventsRegistered {
 
 
-    final static String URL="http://192.168.43.59:3000/android/Events/RegisteredEvents";
+    final static String URL="http://192.168.0.106:3000/android/Events/RegisteredEvents";
 
     AsyncHttpClient asyncHttpClient;
     RequestParams requestParams;
@@ -53,11 +53,14 @@ public class EventsRegistered {
                     date=new ArrayList<>();
                     time=new ArrayList<>();
                     desc=new ArrayList<>();
+                    timeArr=new ArrayList<Boolean>();
 
                     Actualli=new ArrayList<List<String>>();
 
 
                     JSONObject testV=new JSONObject(new String(responseBody));
+
+                    System.out.println("REGISTER : " + testV);
 
 
                     JSONArray jsonArray=testV.getJSONArray("ResultArr");

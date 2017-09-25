@@ -1,5 +1,6 @@
 package com.example.anmol.events.Events;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,7 +10,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AlphaAnimation;
+import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 
 import com.example.anmol.events.Adapter.RecyclerAllEvents;
@@ -17,6 +21,7 @@ import com.example.anmol.events.Adapter.RecyclerRegEvents;
 import com.example.anmol.events.Data.EventsAll;
 import com.example.anmol.events.Data.EventsRegistered;
 import com.example.anmol.events.Data.login;
+import com.example.anmol.events.Login;
 import com.example.anmol.events.R;
 import com.squareup.picasso.Picasso;
 
@@ -26,10 +31,6 @@ import org.json.JSONObject;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-
-/**
- * Created by anmol on 1/8/17.
- */
 
 public class RegisteredEvents extends AppCompatActivity {
 
@@ -47,100 +48,129 @@ public class RegisteredEvents extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Login First if not loggedIn
+        final login l = new login(RegisteredEvents.this);
+        l.Login(new login.AsyncCallback() {
+            @Override
+            public void onSuccess(JSONObject jsonObject) throws JSONException {
+
+                boolean LoggedIn = jsonObject.getBoolean("loggedIn");
+
+                if (!LoggedIn) {
+                    Intent i = new Intent(RegisteredEvents.this, Login.class);
+                    startActivity(i);
+                    //finishing the activity
+                    RegisteredEvents.this.finish();
+                }
+
+            }
+        });
+
+
         setContentView(R.layout.registeredevents);
 
-        final Timer timer=new Timer();
+        final Timer timer = new Timer();
 
-        toolbar= (Toolbar) findViewById(R.id.tooolbarRegEve);
-        appBarLayout= (AppBarLayout) findViewById(R.id.appBarregeve);
-        collapsingToolbarLayout= (CollapsingToolbarLayout) findViewById(R.id.collapsinggToolbarregEve);
-        rv= (RecyclerView) findViewById(R.id.recyclerRegEvents);
+        toolbar = (Toolbar) findViewById(R.id.tooolbarRegEve);
+        appBarLayout = (AppBarLayout) findViewById(R.id.appBarregeve);
+        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsinggToolbarregEve);
+        rv = (RecyclerView) findViewById(R.id.recyclerRegEvents);
 
-        imageView= (ImageView) findViewById(R.id.imageRegEventsTop);
+        imageView = (ImageView) findViewById(R.id.imageRegEventsTop);
 
         setSupportActionBar(toolbar);
 
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
 
-            int scroll =-1;
+            int scroll = -1;
 
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
 
-                if (scroll==-1){
-                    scroll=appBarLayout.getTotalScrollRange();
+                if (scroll == -1) {
+                    scroll = appBarLayout.getTotalScrollRange();
                 }
 
-                if (verticalOffset * -1 >= scroll-150 ){
-                    collapsingToolbarLayout.setTitle("RegisteredEvents");
+                if (verticalOffset * -1 >= scroll - 150) {
+                    collapsingToolbarLayout.setTitle("Registered Events");
                     collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
 
-                }
+                } else {
 
-                else{
+                    collapsingToolbarLayout.setTitle("Registered Events");
+                    collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
 
-                    collapsingToolbarLayout.setTitle(" ");
+                    collapsingToolbarLayout.setExpandedTitleGravity(Gravity.CENTER);
 
                 }
 
             }
         });
 
-        EventsRegistered eventsRegistered=new EventsRegistered(RegisteredEvents.this);
-        eventsRegistered.getData(new EventsRegistered.AsyncCallback() {
+
+        login l1= new login(RegisteredEvents.this);
+
+        l1.Login(new login.AsyncCallback() {
             @Override
-            public void onSuccess(final List<List<String>> result,final List<Boolean> result1) {
+            public void onSuccess(JSONObject jsonObject) throws JSONException {
+
+                final boolean LoggedIn = jsonObject.getBoolean("loggedIn");
+
+                // if LoggedIn is true
+                if (LoggedIn){
+
+                    EventsRegistered eventsRegistered = new EventsRegistered(RegisteredEvents.this);
 
 
-                login l=new login(RegisteredEvents.this);
-
-                l.Login(new login.AsyncCallback() {
-                    @Override
-                    public void onSuccess(JSONObject jsonObject) throws JSONException {
-
-                        boolean LoggedIn=jsonObject.getBoolean("loggedIn");
-
-                        layoutManager=new LinearLayoutManager(RegisteredEvents.this);
-                        rv.setLayoutManager(layoutManager);
-                        adapter=new RecyclerRegEvents(LoggedIn,RegisteredEvents.this,result.get(0),result.get(1),result.get(2),result.get(3),result.get(4),result1);
-                        rv.setAdapter(adapter);
-
-
-                    }
-                });
+                    eventsRegistered.getData(new EventsRegistered.AsyncCallback() {
+                        @Override
+                        public void onSuccess(final List<List<String>> result, final List<Boolean> result1) {
 
 
 
-                timer.scheduleAtFixedRate(new TimerTask(){
-                    @Override
-                    public void run(){
+                                    layoutManager = new LinearLayoutManager(RegisteredEvents.this);
+                                    rv.setLayoutManager(layoutManager);
+                                    adapter = new RecyclerRegEvents(LoggedIn, RegisteredEvents.this, result.get(0), result.get(1), result.get(2), result.get(3), result.get(4), result1);
+                                    rv.setAdapter(adapter);
 
 
-                        RegisteredEvents.this.runOnUiThread(new Runnable() {
-                            public void run() {
+                            timer.scheduleAtFixedRate(new TimerTask() {
+                                @Override
+                                public void run() {
 
-                                if (i<result.get(0).size()) {
 
-                                    Picasso.with(getApplicationContext()).load(result.get(0).get(i)).fit().into(imageView);
+                                    RegisteredEvents.this.runOnUiThread(new Runnable() {
+                                        public void run() {
 
-                                    AlphaAnimation alpha=new AlphaAnimation(0,1);
-                                    alpha.setDuration(1000);
+                                            if (i < result.get(0).size()) {
 
-                                    imageView.startAnimation(alpha);
+                                                Picasso.with(getApplicationContext()).load(result.get(0).get(i)).fit().into(imageView);
 
-                                    i++;
+                                                ScaleAnimation scaleAnimation=new ScaleAnimation(0,1,0,1);
+                                                scaleAnimation.setDuration(400);
 
+                                                scaleAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
+
+                                                imageView.startAnimation(scaleAnimation);
+
+                                                i++;
+
+                                            } else if (i == result.get(0).size()) {
+                                                i = 0;
+                                            }
+
+
+                                        }
+                                    });
                                 }
-                                else if (i==result.get(0).size()){
-                                    i=0;
-                                }
+                            }, 0, 3000);
 
 
-                            }
-                        });
-                    }
-                },0,3000);
+                        }
+                    });
 
+                }
 
 
             }

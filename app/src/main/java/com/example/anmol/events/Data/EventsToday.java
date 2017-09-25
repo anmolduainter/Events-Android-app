@@ -15,9 +15,6 @@ import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 
-/**
- * Created by anmol on 13/8/17.
- */
 
 public class EventsToday {
 
@@ -70,7 +67,7 @@ public class EventsToday {
 
                     boolean Today=testV.getBoolean("Today");
 
-                    boolean LoggedIn = LoggedIn = testV.getBoolean("LoggedIn");
+                    boolean LoggedIn = testV.getBoolean("LoggedIn");
 
                     if (Today) {
 
