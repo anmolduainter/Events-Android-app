@@ -227,6 +227,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         else if(id==R.id.TodayEventsMenu){
 
             Intent i=new Intent(MainActivity.this,TodayEvents.class);
+            startActivity(i);
 
         }
 

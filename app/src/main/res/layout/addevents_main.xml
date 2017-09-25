@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/PutEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Put Event"
+        android:textSize="40sp"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="40dp"
+        android:textColor="#fff"/>
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/PutEvent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/ImageUrlTextIn"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
+
+            <EditText
+                android:id="@+id/imageUrlEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="ImageUrl"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/titleTextIn"
+            android:layout_width="300dp"
+            android:layout_below="@id/ImageUrlTextIn"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
+
+            <EditText
+                android:id="@+id/titleEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Title"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+    </RelativeLayout>
+</RelativeLayout>

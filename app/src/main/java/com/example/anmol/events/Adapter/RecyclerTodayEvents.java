@@ -1,11 +1,6 @@
 package com.example.anmol.events.Adapter;
 
-import android.animation.ArgbEvaluator;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,29 +9,22 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.anmol.events.Events.RegisteredEvents;
-import com.example.anmol.events.Login;
-import com.example.anmol.events.PostData.RegisterEvents;
 import com.example.anmol.events.R;
 import com.squareup.picasso.Picasso;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.List;
 
 
-public class RecyclerRegEvents extends RecyclerView.Adapter<RecyclerRegEvents.ViewHolder>  {
+public class RecyclerTodayEvents extends RecyclerView.Adapter<RecyclerTodayEvents.ViewHolder>  {
 
 
     List<String> imgUrl,name,date,time,desc;
-    List<Boolean> timeArr;
+    List<String> timeArr;
     Context ctx;
     boolean loggedIn;
 
-    public RecyclerRegEvents(boolean loggedIn, Context ctx, List<String> imgUrl, List<String> name, List<String> date, List<String> time, List<String> desc, List<Boolean> timeArr) {
+    public RecyclerTodayEvents(boolean loggedIn, Context ctx, List<String> imgUrl, List<String> name, List<String> date, List<String> time, List<String> desc, List<String> timeArr) {
 
         this.imgUrl=imgUrl;
         this.name=name;
@@ -73,18 +61,18 @@ public class RecyclerRegEvents extends RecyclerView.Adapter<RecyclerRegEvents.Vi
 
 
 
-        }
+    }
 
 
     @Override
-    public RecyclerRegEvents.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerTodayEvents.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        return new RecyclerRegEvents.ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.card_layout_reg_events,parent,false));
+        return new RecyclerTodayEvents.ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.card_layout_reg_events,parent,false));
 
     }
 
     @Override
-    public void onBindViewHolder(RecyclerRegEvents.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerTodayEvents.ViewHolder holder, int position) {
 
 
         Picasso.with(ctx).load(imgUrl.get(position)).fit().into(holder.img1);
@@ -106,3 +94,4 @@ public class RecyclerRegEvents extends RecyclerView.Adapter<RecyclerRegEvents.Vi
 
 
 }
+
