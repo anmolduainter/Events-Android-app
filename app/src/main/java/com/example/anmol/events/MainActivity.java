@@ -31,6 +31,10 @@ import com.example.anmol.events.Events.AllEvents;
 import com.example.anmol.events.Events.RegisteredEvents;
 import com.example.anmol.events.Events.TodayEvents;
 import com.example.anmol.events.Utils.CircleTransform;
+import com.glide.slider.library.Animations.DescriptionAnimation;
+import com.glide.slider.library.SliderLayout;
+import com.glide.slider.library.SliderTypes.BaseSliderView;
+import com.glide.slider.library.SliderTypes.TextSliderView;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -56,6 +60,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     TextView tx;
 
+    private SliderLayout sliderLayout;
+
+    // Url of images
+    String URL[]={
+
+            "https://pbs.twimg.com/profile_images/663984159556268032/fWFLE3QM.jpg",
+            "https://eventimages.insider.in/insiderLogo.png",
+            "https://lh3.googleusercontent.com/kSOoODI0T2kS0awZ-4deECTIZDrlzR6l2Ua6yKymWhyujxjSPZPEAa91bPj56Qka5Ao=w300"
+    };
+
 
     String url="http://blog.soundidea.co.za/home/22/files/A%20quick%20guide%20to%20opt%20pic%202.jpg";
 
@@ -67,8 +81,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //Setting ToolBar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitleTextColor(Color.WHITE);
+        toolbar.setTitle("");
         setSupportActionBar(toolbar);
+
+        //Slider
+        sliderLayout= (SliderLayout) findViewById(R.id.slider);
+        SlidingLayout();
 
         //Checking Login Status
         l=new login(MainActivity.this);
@@ -235,6 +253,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         }
 
+        //Your Events
+        else if (id==R.id.YourEventsMenu){
+
+            l.Login(new login.AsyncCallback() {
+                @Override
+                public void onSuccess(JSONObject jsonObject) throws JSONException {
+
+                    final boolean LoggedIn=jsonObject.getBoolean("loggedIn");
+
+                    // Logged In True
+                    if (LoggedIn){
+
+
+
+                    }
+                    else{
+                        Intent i=new Intent(MainActivity.this,Login.class);
+                        startActivity(i);
+                    }
+
+                }
+            });
+
+        }
+
         else if (id == R.id.RegisteredEventsMenu) {
 
             Intent i=new Intent(MainActivity.this, RegisteredEvents.class);
@@ -283,4 +326,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    private void SlidingLayout(){
+
+        for (int i=0;i<URL.length;i++){
+            TextSliderView textSliderView=new TextSliderView(MainActivity.this);
+            textSliderView.image(URL[i]);
+            textSliderView.setCenterCrop(false);
+            sliderLayout.addSlider(textSliderView);
+        }
+
+        sliderLayout.setPresetTransformer(SliderLayout.Transformer.Accordion);
+        sliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
+        sliderLayout.setDuration(4000);
+        sliderLayout.setCustomAnimation(new DescriptionAnimation());
+
+    }
+
 }

@@ -6,11 +6,11 @@
 
     <ImageView
         android:id="@+id/login_image"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
-        android:background="@drawable/mountain"/>
+        android:background="@drawable/logo"/>
 
     <android.support.design.widget.TextInputLayout
         android:layout_centerHorizontal="true"
@@ -51,27 +51,17 @@
         android:id="@+id/login_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:text="Login"
-        android:textStyle="bold|italic"
+        android:paddingBottom="10dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        android:paddingLeft="20dp"
+        android:textStyle="bold"
         android:textColor="#fff"
-        android:background="@color/colorPrimary"
+        android:textSize="20dp"
+        android:background="@color/red_btn_bg_color"
         android:layout_below="@id/password_login_upper"
         android:layout_centerHorizontal="true"/>
-
-
-    <Button
-        android:id="@+id/facebook_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Log In with Facebook"
-        android:textStyle="bold|italic"
-        android:textColor="#fff"
-        android:background="@color/colorPrimary"
-        android:layout_below="@id/login_btn"
-        android:layout_centerHorizontal="true"/>
-
-
 
 </RelativeLayout>

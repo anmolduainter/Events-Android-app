@@ -8,19 +8,40 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/content_main">
 
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-     <android.support.v7.widget.RecyclerView
-        android:id="@+id/UpcomingEventsMainScreen"
+        android:layout_height="match_parent">
+        <com.glide.slider.library.SliderLayout
+            android:id="@+id/slider"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
+            android:layout_width="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_height="220dp"
+            />
+    <ScrollView
+        android:layout_below="@id/slider"
         android:layout_width="match_parent"
-         android:background="#EDE7F6"
-        android:layout_height="match_parent"
-        android:scrollbars="horizontal"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        ></android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/UpcomingEventsMainScreen"
+                android:layout_width="match_parent"
+                android:nestedScrollingEnabled="false"
+                android:background="#EDE7F6"
+                android:layout_height="match_parent"
+                android:scrollbars="horizontal"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                ></android.support.v7.widget.RecyclerView>
+
+        </RelativeLayout>
+     </ScrollView>
     </RelativeLayout>
-
+    </android.support.v4.widget.NestedScrollView>
 </RelativeLayout>

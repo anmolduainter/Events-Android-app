@@ -6,7 +6,10 @@
     xmlns:pew="http://schemas.android.com/tools"
     android:elevation="2dp"
     android:layout_marginLeft="1dp"
+    android:focusableInTouchMode="true"
+    android:focusable="true"
     xmlns:android="http://schemas.android.com/apk/res/android">
+
 
     <RelativeLayout
         android:background="#EDE7F6"
@@ -32,6 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="320dp"
             android:layout_marginTop="2dp"
+            android:nestedScrollingEnabled="false"
             android:layout_below="@id/TextViewContent"
             android:scrollbars="horizontal"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -39,10 +43,5 @@
 
 
     </RelativeLayout>
-
-
-
-
-
 
 </android.support.v7.widget.CardView>
