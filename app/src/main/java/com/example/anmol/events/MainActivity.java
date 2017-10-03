@@ -1,15 +1,8 @@
 package com.example.anmol.events;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
-import android.media.Image;
-import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -19,35 +12,24 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
-import android.view.DragEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.TranslateAnimation;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.load.resource.gif.GifDrawable;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.SimpleTarget;
-import com.daimajia.androidanimations.library.Techniques;
-import com.daimajia.androidanimations.library.YoYo;
-import com.example.anmol.events.Adapter.RecyclerNavAdapter;
 import com.example.anmol.events.Adapter.RecyclerUpComingEventsVertical;
-import com.example.anmol.events.Adapter.RecyclerUpcomingEventsMain;
 import com.example.anmol.events.Data.EventsAll;
 import com.example.anmol.events.Data.EventsToday;
 import com.example.anmol.events.Data.login;
+import com.example.anmol.events.Data.logout;
 import com.example.anmol.events.Events.AddEventsMain;
 import com.example.anmol.events.Events.AllEvents;
 import com.example.anmol.events.Events.RegisteredEvents;
 import com.example.anmol.events.Events.TodayEvents;
-import com.example.anmol.events.PostData.UnRegisteredEvent;
 import com.example.anmol.events.Utils.CircleTransform;
 import com.squareup.picasso.Picasso;
 
@@ -58,7 +40,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
-import jp.wasabeef.glide.transformations.BlurTransformation;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -234,7 +215,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(final MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
@@ -268,7 +249,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     final boolean LoggedIn=jsonObject.getBoolean("loggedIn");
                     if (LoggedIn){
                         new SweetAlertDialog(MainActivity.this, SweetAlertDialog.WARNING_TYPE)
-                                .setTitleText("Sure Want To DeRegister ? ")
+                                .setTitleText("Sure Want To LogOut ? ")
                                 .setConfirmText("Yes")
                                 .setCancelText("No")
                                 .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
@@ -281,8 +262,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                                     @Override
                                     public void onClick(SweetAlertDialog sDialog) {
-
-
+                                        tx.setText("Please Login");
+                                        item.setTitle("LogIn");
+                                        logout l=new logout(MainActivity.this);
+                                        l.LogoutSuccess();
                                         sDialog.dismissWithAnimation();
                                     }
                                 })
