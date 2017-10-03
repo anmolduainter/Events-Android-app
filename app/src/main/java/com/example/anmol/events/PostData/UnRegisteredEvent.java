@@ -1,6 +1,5 @@
 package com.example.anmol.events.PostData;
 
-
 import android.content.Context;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -13,71 +12,71 @@ import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
 
-public class AddEvents {
+public class UnRegisteredEvent {
 
-    Context ctx;
-    String image;
-    String name;
-    String date;
-    String time;
-    String desc;
-
+    String name,date,time;
     AsyncHttpClient asyncHttpClient;
     RequestParams requestParams;
+    int pos;
 
-    private static final String URL="http://192.168.0.106:3000/android/Events/AddEvents";
+/*
+    For Unregitering The event
+ */
 
-    public AddEvents(Context ctx,String image,String name,String date,String time,String desc) {
+    private static final String URL="http://192.168.0.106:3000/Events/RegisteredEvents";
 
-        this.ctx = ctx;
-        this.image = image;
-        this.name = name;
-        this.date = date;
-        this.time = time;
-        this.desc = desc;
+    Context ctx;
+
+    public UnRegisteredEvent(Context ctx, String name, String date, String time){
 
         asyncHttpClient=new AsyncHttpClient();
         requestParams=new RequestParams();
         asyncHttpClient.setEnableRedirects(true);
         PersistentCookieStore persistentCookieStore=new PersistentCookieStore(ctx);
         asyncHttpClient.setCookieStore(persistentCookieStore);
-
+        this.name=name;
+        this.date=date;
+        this.time=time;
+        this.ctx=ctx;
     }
 
-    public void postEvent(final AsyncCallBackAdd asyncCallback){
+    public void POST(final AsyncCallBack asyncCallBack){
 
-        requestParams.put("imageUrl",image);
-        requestParams.put("title",name);
+        requestParams.put("name",name);
         requestParams.put("date",date);
         requestParams.put("time",time);
-        requestParams.put("desc",desc);
 
         asyncHttpClient.post(URL, requestParams, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
 
                 try {
-
-                    System.out.println(new String(responseBody));
                     JSONObject jsonObject=new JSONObject(new String(responseBody));
 
-                    //Checking the output
-                    System.out.println("AddEvents : " + jsonObject);
+                    asyncCallBack.onSuccess(jsonObject);
 
-                    asyncCallback.onSuccess(jsonObject);
-
-                }
-                catch (JSONException e) {
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
+
             }
+
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
 
+
+
             }
         });
+
     }
-    public interface AsyncCallBackAdd{
+
+
+    public interface AsyncCallBack{
         void onSuccess(JSONObject jsonObject) throws JSONException;
     }
+
+
+
 }

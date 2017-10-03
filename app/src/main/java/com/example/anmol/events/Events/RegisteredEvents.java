@@ -11,10 +11,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
+import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.example.anmol.events.Adapter.RecyclerAllEvents;
 import com.example.anmol.events.Adapter.RecyclerRegEvents;
@@ -22,6 +24,7 @@ import com.example.anmol.events.Data.EventsAll;
 import com.example.anmol.events.Data.EventsRegistered;
 import com.example.anmol.events.Data.login;
 import com.example.anmol.events.Login;
+import com.example.anmol.events.MainActivity;
 import com.example.anmol.events.R;
 import com.squareup.picasso.Picasso;
 
@@ -37,6 +40,7 @@ public class RegisteredEvents extends AppCompatActivity {
     AppBarLayout appBarLayout;
     CollapsingToolbarLayout collapsingToolbarLayout;
     Toolbar toolbar;
+    RelativeLayout relativeLayout;
     RecyclerView rv;
     RecyclerView.LayoutManager layoutManager;
     RecyclerView.Adapter adapter;
@@ -72,12 +76,7 @@ public class RegisteredEvents extends AppCompatActivity {
 
         final Timer timer = new Timer();
 
-        toolbar = (Toolbar) findViewById(R.id.tooolbarRegEve);
-        appBarLayout = (AppBarLayout) findViewById(R.id.appBarregeve);
-        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsinggToolbarregEve);
-        rv = (RecyclerView) findViewById(R.id.recyclerRegEvents);
-
-        imageView = (ImageView) findViewById(R.id.imageRegEventsTop);
+        initViews();
 
         setSupportActionBar(toolbar);
 
@@ -121,59 +120,81 @@ public class RegisteredEvents extends AppCompatActivity {
                 if (LoggedIn){
 
                     EventsRegistered eventsRegistered = new EventsRegistered(RegisteredEvents.this);
-
-
                     eventsRegistered.getData(new EventsRegistered.AsyncCallback() {
                         @Override
                         public void onSuccess(final List<List<String>> result, final List<Boolean> result1) {
 
+                            if (result.isEmpty()){
+                                rv.setVisibility(View.GONE);
+                                relativeLayout.setVisibility(View.VISIBLE);
+                                Picasso.with(getApplicationContext()).load("http://orientindia.com/admin//130/evt_photo/4_event_marketing.jpg").fit().into(imageView);
+                            }
+                            else{
+                                relativeLayout.setVisibility(View.GONE);
+                                rv.setVisibility(View.VISIBLE);
+                                layoutManager = new LinearLayoutManager(RegisteredEvents.this);
+                                rv.setLayoutManager(layoutManager);
+                                adapter = new RecyclerRegEvents(LoggedIn, RegisteredEvents.this, result.get(0), result.get(1), result.get(2), result.get(3), result.get(4), result1);
+                                rv.setAdapter(adapter);
 
 
-                                    layoutManager = new LinearLayoutManager(RegisteredEvents.this);
-                                    rv.setLayoutManager(layoutManager);
-                                    adapter = new RecyclerRegEvents(LoggedIn, RegisteredEvents.this, result.get(0), result.get(1), result.get(2), result.get(3), result.get(4), result1);
-                                    rv.setAdapter(adapter);
+                                timer.scheduleAtFixedRate(new TimerTask() {
+                                    @Override
+                                    public void run() {
 
 
-                            timer.scheduleAtFixedRate(new TimerTask() {
-                                @Override
-                                public void run() {
+                                        RegisteredEvents.this.runOnUiThread(new Runnable() {
+                                            public void run() {
+
+                                                if (i < result.get(0).size()) {
+
+                                                    Picasso.with(getApplicationContext()).load(result.get(0).get(i)).fit().into(imageView);
+
+                                                    ScaleAnimation scaleAnimation=new ScaleAnimation(0,1,0,1);
+                                                    scaleAnimation.setDuration(400);
+
+                                                    scaleAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
+
+                                                    imageView.startAnimation(scaleAnimation);
+
+                                                    i++;
+
+                                                } else if (i == result.get(0).size()) {
+                                                    i = 0;
+                                                }
 
 
-                                    RegisteredEvents.this.runOnUiThread(new Runnable() {
-                                        public void run() {
-
-                                            if (i < result.get(0).size()) {
-
-                                                Picasso.with(getApplicationContext()).load(result.get(0).get(i)).fit().into(imageView);
-
-                                                ScaleAnimation scaleAnimation=new ScaleAnimation(0,1,0,1);
-                                                scaleAnimation.setDuration(400);
-
-                                                scaleAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
-
-                                                imageView.startAnimation(scaleAnimation);
-
-                                                i++;
-
-                                            } else if (i == result.get(0).size()) {
-                                                i = 0;
                                             }
+                                        });
+                                    }
+                                }, 0, 3000);
 
-
-                                        }
-                                    });
-                                }
-                            }, 0, 3000);
-
-
+                            }
                         }
                     });
+
+                }
+
+                else{
+
+                    Intent i=new Intent(RegisteredEvents.this,Login.class);
+                    startActivity(i);
+                    RegisteredEvents.this.finish();
 
                 }
 
 
             }
         });
+    }
+
+    //initialize views
+    public void initViews(){
+        relativeLayout= (RelativeLayout) findViewById(R.id.relRegisterd);
+        toolbar = (Toolbar) findViewById(R.id.tooolbarRegEve);
+        appBarLayout = (AppBarLayout) findViewById(R.id.appBarregeve);
+        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsinggToolbarregEve);
+        rv = (RecyclerView) findViewById(R.id.recyclerRegEvents);
+        imageView = (ImageView) findViewById(R.id.imageRegEventsTop);
     }
 }

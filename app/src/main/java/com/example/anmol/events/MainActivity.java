@@ -1,5 +1,6 @@
 package com.example.anmol.events;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.Image;
@@ -27,6 +28,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
@@ -41,9 +43,11 @@ import com.example.anmol.events.Adapter.RecyclerUpcomingEventsMain;
 import com.example.anmol.events.Data.EventsAll;
 import com.example.anmol.events.Data.EventsToday;
 import com.example.anmol.events.Data.login;
+import com.example.anmol.events.Events.AddEventsMain;
 import com.example.anmol.events.Events.AllEvents;
 import com.example.anmol.events.Events.RegisteredEvents;
 import com.example.anmol.events.Events.TodayEvents;
+import com.example.anmol.events.PostData.UnRegisteredEvent;
 import com.example.anmol.events.Utils.CircleTransform;
 import com.squareup.picasso.Picasso;
 
@@ -53,6 +57,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import jp.wasabeef.glide.transformations.BlurTransformation;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -201,8 +206,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+
+        // Clicking Add Event on main activity
         if (id == R.id.action_settings) {
+
+            l.Login(new login.AsyncCallback() {
+                @Override
+                public void onSuccess(JSONObject jsonObject) throws JSONException {
+                    final boolean LoggedIn=jsonObject.getBoolean("loggedIn");
+                     if (LoggedIn){
+                         Intent i=new Intent(MainActivity.this, AddEventsMain.class);
+                         startActivity(i);
+                     }
+                     else{
+                         Toast.makeText(MainActivity.this, "Login First", Toast.LENGTH_SHORT).show();
+                         Intent i=new Intent(MainActivity.this,Login.class);
+                         startActivity(i);
+                     }
+                }
+            });
+
             return true;
         }
 
@@ -243,25 +266,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 public void onSuccess(JSONObject jsonObject) throws JSONException {
 
                     final boolean LoggedIn=jsonObject.getBoolean("loggedIn");
-
                     if (LoggedIn){
+                        new SweetAlertDialog(MainActivity.this, SweetAlertDialog.WARNING_TYPE)
+                                .setTitleText("Sure Want To DeRegister ? ")
+                                .setConfirmText("Yes")
+                                .setCancelText("No")
+                                .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                    @Override
+                                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                        sweetAlertDialog.dismissWithAnimation();
+                                    }
+                                })
+                                // Confirm
+                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                    @Override
+                                    public void onClick(SweetAlertDialog sDialog) {
 
+
+                                        sDialog.dismissWithAnimation();
+                                    }
+                                })
+                                .show();
 
                     }
-
                     else{
-
                         Intent i=new Intent(MainActivity.this,Login.class);
                         startActivity(i);
-
                     }
-
-
                 }
             });
-
-
-
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

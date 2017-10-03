@@ -3,6 +3,7 @@ package com.example.anmol.events.Adapter;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -17,15 +18,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.anmol.events.Events.RegisteredEvents;
+import com.example.anmol.events.Events.TodayEvents;
 import com.example.anmol.events.Login;
+import com.example.anmol.events.MainActivity;
 import com.example.anmol.events.PostData.RegisterEvents;
+import com.example.anmol.events.PostData.UnRegisteredEvent;
 import com.example.anmol.events.R;
+import com.github.johnpersano.supertoasts.library.Style;
+import com.github.johnpersano.supertoasts.library.SuperActivityToast;
+import com.github.johnpersano.supertoasts.library.utils.PaletteUtils;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
 public class RecyclerRegEvents extends RecyclerView.Adapter<RecyclerRegEvents.ViewHolder>  {
@@ -69,11 +78,18 @@ public class RecyclerRegEvents extends RecyclerView.Adapter<RecyclerRegEvents.Vi
             Register1=itemView.findViewById(R.id.Not_Register_Reg_Events_Button);
             Like=itemView.findViewById(R.id.Like_Reg_Events_Button);
             NotLike=itemView.findViewById(R.id.Not_Like_Reg_Events_Button);
+
+            // Not Register Click
+            Register1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    NotRegister(getAdapterPosition());
+                }
+            });
         }
 
 
-
-        }
+    }
 
 
     @Override
@@ -99,10 +115,42 @@ public class RecyclerRegEvents extends RecyclerView.Adapter<RecyclerRegEvents.Vi
 
     @Override
     public int getItemCount() {
-
         return imgUrl.size();
-
     }
 
+    //Clicking Not Register
+    public void NotRegister(final int pos){
 
+        new SweetAlertDialog(ctx, SweetAlertDialog.WARNING_TYPE)
+                .setTitleText("Sure Want To DeRegister ? ")
+                .setConfirmText("Yes")
+                .setCancelText("No")
+                .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        sweetAlertDialog.dismissWithAnimation();
+                    }
+                })
+                // Confirm
+                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sDialog) {
+                        UnRegisteredEvent unRegisteredEvent=new UnRegisteredEvent(ctx,name.get(pos),date.get(pos),time.get(pos));
+                        unRegisteredEvent.POST(new UnRegisteredEvent.AsyncCallBack() {
+                            @Override
+                            public void onSuccess(JSONObject jsonObject) throws JSONException {
+                                boolean succeess=jsonObject.getBoolean("success");
+                                if (succeess){
+                                    //Refreshing Layout
+                                    Intent i=new Intent(ctx,RegisteredEvents.class);
+                                    ctx.startActivity(i);
+                                    ((Activity)ctx).finish();
+                                }
+                            }
+                        });
+                        sDialog.dismissWithAnimation();
+                    }
+                })
+                .show();
+    }
 }

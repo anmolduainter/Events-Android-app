@@ -100,6 +100,7 @@ public class TodayEvents extends AppCompatActivity {
 
                     layoutManager=new LinearLayoutManager(TodayEvents.this);
                     adapter=new RecyclerTodayEvents(LoggedIn,TodayEvents.this,list.get(0),list.get(1),list.get(2),list.get(3),list.get(4),list.get(7));
+                    rv.setLayoutManager(layoutManager);
                     rv.setAdapter(adapter);
 
                     timer.scheduleAtFixedRate(new TimerTask() {
@@ -136,7 +137,7 @@ public class TodayEvents extends AppCompatActivity {
                     Picasso.with(getApplicationContext()).load("http://orientindia.com/admin//130/evt_photo/4_event_marketing.jpg").fit().into(imageView);
 
                     rel.setVisibility(View.VISIBLE);
-                    rv.setVisibility(View.INVISIBLE);
+                    rv.setVisibility(View.GONE);
 
                 }
 

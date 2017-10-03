@@ -49,5 +49,67 @@
 
         </android.support.design.widget.TextInputLayout>
 
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/descTextIn"
+            android:layout_width="300dp"
+            android:layout_below="@id/titleTextIn"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
+
+            <EditText
+                android:id="@+id/descEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Description"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/dateTextIn"
+            android:layout_width="300dp"
+            android:layout_below="@id/descTextIn"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
+
+            <EditText
+                android:id="@+id/dateEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Date"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/timeTextIn"
+            android:layout_width="300dp"
+            android:layout_below="@id/dateTextIn"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
+
+            <EditText
+                android:id="@+id/timeEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Time"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/SubmitAddEvents"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/timeTextIn"
+            android:layout_marginTop="40dp"
+            android:text="SUbmit"
+            android:textSize="30dp"
+            android:background="@color/colorAccent"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            />
+
     </RelativeLayout>
 </RelativeLayout>

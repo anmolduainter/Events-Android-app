@@ -116,9 +116,10 @@ public class EventsToday {
                     }
                     else{
 
-
-
                     }
+
+
+                    System.out.println("Actual Li : "+Actualli);
 
                     asyncCallback.onSuccess(Actualli,Today,LoggedIn);
 
