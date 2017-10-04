@@ -42,14 +42,20 @@ public class RecyclerAdapterYours  extends RecyclerView.Adapter<RecyclerAdapterY
         public ViewHolder(View itemView)
         {
             super(itemView);
-
             im=itemView.findViewById(R.id.imageView_your_events);
             title=itemView.findViewById(R.id.title_yoursEvent);
             date=itemView.findViewById(R.id.date_yours_Events);
+            edit=itemView.findViewById(R.id.EditYourEvents);
+            delete=itemView.findViewById(R.id.deleteYourEvents);
+
+            delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    deleteClicked();
+                }
+            });
 
         }
-
-
 
     }
 
@@ -74,6 +80,13 @@ public class RecyclerAdapterYours  extends RecyclerView.Adapter<RecyclerAdapterY
     public int getItemCount() {
 
         return imgUrl.size();
+
+    }
+
+    //deleteClicked
+    public void deleteClicked(){
+
+
 
     }
 
