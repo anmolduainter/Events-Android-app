@@ -1,6 +1,7 @@
 package com.example.anmol.events.Data;
 
 import android.content.Context;
+import android.telecom.Call;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -14,63 +15,51 @@ import cz.msebera.android.httpclient.Header;
 
 public class yourEvents {
 
-    Context ctx;
-    String TAG="MOVIE";
+    Context context;
 
-    final static String URL="http://192.168.0.105:3000/android/Events/YourEvents";
+    private AsyncHttpClient asyncHttpClient;
+    private RequestParams requestParams;
 
-    AsyncHttpClient asyncHttpClient;
-    RequestParams requestParams;
+    private static final String URL="http://192.168.0.105:3000/Events/YourEvents";
 
-    public yourEvents(Context ctx){
+    public yourEvents(Context context){
+        this.context=context;
         asyncHttpClient=new AsyncHttpClient();
-        asyncHttpClient.setEnableRedirects(true);
+        asyncHttpClient.setEnableRedirects(false);
         requestParams=new RequestParams();
-        PersistentCookieStore myCookieStore = new PersistentCookieStore(ctx);
+        PersistentCookieStore myCookieStore = new PersistentCookieStore(context);
         asyncHttpClient.setCookieStore(myCookieStore);
 
     }
 
+    public void EventsYours(final Callback callback){
 
-    public void EventsYours(final AsyncCallback asyncCallback){
-
-        asyncHttpClient.get(URL, requestParams, new AsyncHttpResponseHandler() {
+        asyncHttpClient.get(context, URL, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
 
                 try {
-                    JSONObject testV=new JSONObject(new String(responseBody));
+                    JSONObject jsonObject=new JSONObject(new String(responseBody));
 
-                    System.out.println(testV);
+                    System.out.println(jsonObject);
 
-                    asyncCallback.onSuccess(testV);
+                    callback.success(jsonObject);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
 
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
 
-
-
-                String a=new String(responseBody);
-
-                System.out.println(a);
-
             }
         });
-
-
     }
 
-
-    public interface AsyncCallback{
-        void onSuccess(JSONObject jsonObject) throws JSONException;
+    public interface Callback{
+        void success(JSONObject jsonObject) throws JSONException;
     }
-
 
 }

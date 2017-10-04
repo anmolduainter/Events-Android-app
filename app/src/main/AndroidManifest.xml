@@ -28,6 +28,7 @@
         <activity android:name=".OnSiteWeb.onsite"></activity>
         <activity android:name=".Events.TodayEvents"></activity>
         <activity android:name=".Events.AddEventsMain"></activity>
+        <activity android:name=".Events.YourEvents"></activity>
     </application>
 
 </manifest>

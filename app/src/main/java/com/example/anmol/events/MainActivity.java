@@ -30,6 +30,7 @@ import com.example.anmol.events.Events.AddEventsMain;
 import com.example.anmol.events.Events.AllEvents;
 import com.example.anmol.events.Events.RegisteredEvents;
 import com.example.anmol.events.Events.TodayEvents;
+import com.example.anmol.events.Events.YourEvents;
 import com.example.anmol.events.Utils.CircleTransform;
 import com.glide.slider.library.Animations.DescriptionAnimation;
 import com.glide.slider.library.SliderLayout;
@@ -264,9 +265,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                     // Logged In True
                     if (LoggedIn){
-
-
-
+                        Intent i=new Intent(MainActivity.this, YourEvents.class);
+                        startActivity(i);
                     }
                     else{
                         Intent i=new Intent(MainActivity.this,Login.class);
