@@ -19,14 +19,14 @@ public class deleteOne {
     private String name;
     private String date;
     private String time;
-    private int id;
+    private String id;
 
     private AsyncHttpClient asyncHttpClient;
     private RequestParams requestParams;
 
     private static final String URL="http://192.168.0.105:3000/DeleteEvents/deleteOne";
 
-    public deleteOne(Context ctx,int id,String name,String date,String time){
+    public deleteOne(Context ctx,String id,String name,String date,String time){
         this.ctx=ctx;
         this.id=id;
         this.name=name;
@@ -68,7 +68,7 @@ public class deleteOne {
     }
 
     public interface CallBack{
-        void onSuccess(JSONObject jsonObject);
+        void onSuccess(JSONObject jsonObject) throws JSONException;
     }
 
 }

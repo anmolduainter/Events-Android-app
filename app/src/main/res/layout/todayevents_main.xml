@@ -17,7 +17,7 @@
             android:id="@+id/CollapToolBarTodayEve"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#000"
+            android:background="#fff"
             app:contentScrim="@color/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
@@ -27,8 +27,6 @@
                 android:alpha="0.5"
                 android:layout_height="match_parent"
                 />
-
-
             <android.support.v7.widget.Toolbar
                 android:id="@+id/tooolbarTodayEve1"
                 android:elevation="8dp"

@@ -45,6 +45,7 @@ public class YourEvents extends AppCompatActivity{
                 List<String> date=new ArrayList<String>();
                 List<String> time=new ArrayList<String>();
                 List<String> desc=new ArrayList<String>();
+                List<String> id=new ArrayList<String>();
 
 
                 //getting jsonArray
@@ -63,11 +64,12 @@ public class YourEvents extends AppCompatActivity{
                     date.add(jsonObject1.getString("date"));
                     time.add(jsonObject1.getString("time"));
                     desc.add(jsonObject1.getString("desc"));
+                    id.add(jsonObject1.getString("Sql"));
                 }
 
                 //Setting Up Recycler View
                 layoutManager=new LinearLayoutManager(getApplicationContext());
-                adapter=new RecyclerAdapterYours(YourEvents.this,imgUrl,name,date,time,desc);
+                adapter=new RecyclerAdapterYours(YourEvents.this,id,imgUrl,name,date,time,desc);
                 rv.setLayoutManager(layoutManager);
                 rv.setAdapter(adapter);
 

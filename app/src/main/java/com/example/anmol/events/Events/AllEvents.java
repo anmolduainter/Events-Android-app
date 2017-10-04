@@ -76,15 +76,12 @@ public class AllEvents extends AppCompatActivity {
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
 
                 if (scroll==-1){
-
-
                     scroll=appBarLayout.getTotalScrollRange();
-
                 }
 
-                if (verticalOffset * -1 >= scroll-150 ){
+                if (verticalOffset * -1 >= scroll-100 ){
                     collapsingToolbarLayout.setTitle("Upcoming Events");
-                    collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
+                    collapsingToolbarLayout.setCollapsedTitleTextColor(Color.GRAY);
                 }
 
                 else{

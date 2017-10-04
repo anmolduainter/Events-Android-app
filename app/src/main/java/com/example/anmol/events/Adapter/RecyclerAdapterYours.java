@@ -1,5 +1,6 @@
 package com.example.anmol.events.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,22 +8,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.anmol.events.PostData.deleteOne;
 import com.example.anmol.events.R;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.List;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class RecyclerAdapterYours  extends RecyclerView.Adapter<RecyclerAdapterYours.ViewHolder>  {
 
 
-    List<String> imgUrl,name,date,time,desc;
+    List<String> id,imgUrl,name,date,time,desc;
     Context ctx;
 
-    public RecyclerAdapterYours( Context ctx, List<String> imgUrl, List<String> name, List<String> date, List<String> time, List<String> desc) {
+    public RecyclerAdapterYours( Context ctx,List<String> id, List<String> imgUrl, List<String> name, List<String> date, List<String> time, List<String> desc) {
 
+        this.id=id;
         this.imgUrl=imgUrl;
         this.name=name;
         this.date=date;
@@ -51,7 +59,38 @@ public class RecyclerAdapterYours  extends RecyclerView.Adapter<RecyclerAdapterY
             delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    deleteClicked();
+
+                    new SweetAlertDialog(ctx, SweetAlertDialog.WARNING_TYPE)
+                            .setTitleText("Sure Want To Delete this Event ? ")
+                            .setConfirmText("Yes")
+                            .setCancelText("No")
+                            .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                    sweetAlertDialog.dismissWithAnimation();
+                                }
+                            })
+                            // Confirm
+                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialog sDialog) {
+                                    int pos=getAdapterPosition();
+                                    deleteClicked(pos);
+                                    sDialog.dismissWithAnimation();
+                                }
+                            })
+                            .show();
+                }
+            });
+
+
+            // Edit CLicked
+            edit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Toast.makeText(ctx,"Under Development",Toast.LENGTH_LONG).show();
+
                 }
             });
 
@@ -84,10 +123,20 @@ public class RecyclerAdapterYours  extends RecyclerView.Adapter<RecyclerAdapterY
     }
 
     //deleteClicked
-    public void deleteClicked(){
+    public void deleteClicked(int pos){
 
+        deleteOne deleteOne=new deleteOne(ctx,id.get(pos),name.get(pos),date.get(pos),time.get(pos));
+        deleteOne.Delete(new deleteOne.CallBack() {
+            @Override
+            public void onSuccess(JSONObject jsonObject) throws JSONException {
 
-
+                System.out.println(jsonObject);
+                if (jsonObject.getBoolean("success")){
+                    ((Activity)ctx).finish();
+                    ctx.startActivity(((Activity)ctx).getIntent());
+                }
+            }
+        });
     }
 
 

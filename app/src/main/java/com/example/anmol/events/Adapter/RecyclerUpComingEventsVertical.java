@@ -38,14 +38,10 @@ public class RecyclerUpComingEventsVertical extends RecyclerView.Adapter<Recycle
     List<List<List<String>>> ResultingList;
 
 
-    public RecyclerUpComingEventsVertical(boolean LoggedIn,boolean Today, Context ctx,List<List<List<String>>> ResultingList) {
+    public RecyclerUpComingEventsVertical(Context ctx) {
 
 
-        this.Today=Today;
-        this.ResultingList=ResultingList;
         this.ctx=ctx;
-        this.LoggedIn=LoggedIn;
-
 
     }
 
@@ -191,18 +187,18 @@ public class RecyclerUpComingEventsVertical extends RecyclerView.Adapter<Recycle
         else if (position==2){
 
 
-            TechnologyEventsHigh technologyEventsHigh=new TechnologyEventsHigh(ctx);
-
-            technologyEventsHigh.getData(new TechnologyEventsHigh.AsyncCallback() {
-                @Override
-                public void onSuccess(List<List<String>> list) {
-
-                    holder.adapter=new RecyclerTechnologyAdapter(ctx,list.get(0),list.get(1),list.get(2),list.get(3),list.get(4),list.get(5));
-                    holder.rv.setAdapter(holder.adapter);
-
-
-                }
-            });
+//            TechnologyEventsHigh technologyEventsHigh=new TechnologyEventsHigh(ctx);
+//
+//            technologyEventsHigh.getData(new TechnologyEventsHigh.AsyncCallback() {
+//                @Override
+//                public void onSuccess(List<List<String>> list) {
+//
+//                    holder.adapter=new RecyclerTechnologyAdapter(ctx,list.get(0),list.get(1),list.get(2),list.get(3),list.get(4),list.get(5));
+//                    holder.rv.setAdapter(holder.adapter);
+//
+//
+//                }
+//            });
 
 
         }
@@ -210,35 +206,35 @@ public class RecyclerUpComingEventsVertical extends RecyclerView.Adapter<Recycle
 
         else if (position==3){
 
-
-            OutDoorsEventsHigh outDoorsEventsHigh=new OutDoorsEventsHigh(ctx);
-
-            outDoorsEventsHigh.getData(new OutDoorsEventsHigh.AsyncCallback() {
-                @Override
-                public void onSuccess(List<List<String>> list) {
-
-                    holder.adapter=new RecyclerOutDoorAdapter(ctx,list.get(0),list.get(1),list.get(2),list.get(3),list.get(4),list.get(5));
-                    holder.rv.setAdapter(holder.adapter);
-
-                }
-            });
+//
+//            OutDoorsEventsHigh outDoorsEventsHigh=new OutDoorsEventsHigh(ctx);
+//
+//            outDoorsEventsHigh.getData(new OutDoorsEventsHigh.AsyncCallback() {
+//                @Override
+//                public void onSuccess(List<List<String>> list) {
+//
+//                    holder.adapter=new RecyclerOutDoorAdapter(ctx,list.get(0),list.get(1),list.get(2),list.get(3),list.get(4),list.get(5));
+//                    holder.rv.setAdapter(holder.adapter);
+//
+//                }
+//            });
         }
 
         else if (position==4){
 
 
-            TodayEventsHigh todayEventsHigh=new TodayEventsHigh(ctx);
-
-            todayEventsHigh.getData(new TodayEventsHigh.AsyncCallback() {
-                @Override
-                public void onSuccess(List<List<String>> list) {
-
-                    holder.adapter=new RecyclerTodayAdapter(ctx,list.get(0),list.get(1),list.get(2),list.get(3),list.get(4),list.get(5));
-                    holder.rv.setAdapter(holder.adapter);
-
-
-                }
-            });
+//            TodayEventsHigh todayEventsHigh=new TodayEventsHigh(ctx);
+//
+//            todayEventsHigh.getData(new TodayEventsHigh.AsyncCallback() {
+//                @Override
+//                public void onSuccess(List<List<String>> list) {
+//
+//                    holder.adapter=new RecyclerTodayAdapter(ctx,list.get(0),list.get(1),list.get(2),list.get(3),list.get(4),list.get(5));
+//                    holder.rv.setAdapter(holder.adapter);
+//
+//
+//                }
+//            });
         }
 
 

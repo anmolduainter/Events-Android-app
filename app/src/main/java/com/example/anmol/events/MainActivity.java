@@ -115,17 +115,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //Navigation Header Profile Image
         ImageView profileImage=navHeader.findViewById(R.id.ProfileImageNav);
-        Picasso.with(MainActivity.this).load("https://api.androidhive.info/images/nav-menu-header-bg.jpg").fit().into(imageViewNav);
+        Picasso.with(MainActivity.this).load("http://www.ucb.ac.uk/content/images/courses/hospitality-tourism-events/events-management-3.jpg").fit().into(imageViewNav);
         Glide.with(MainActivity.this).load(url).thumbnail(0.5f).bitmapTransform(new CircleTransform(this)).into(profileImage);
 
         DisplayMetrics displayMetrics=new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
         final int height=displayMetrics.heightPixels;
-
-        final EventsAll allData=new EventsAll(MainActivity.this,"AllEvents");
-
-        final EventsToday allTodayEvents=new EventsToday(MainActivity.this);
 
         l.Login(new login.AsyncCallback() {
             @Override
@@ -149,35 +145,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //                adapter=new RecyclerNavAdapter(height,MainActivity.this,LoggedIn);
 //                recyclerView.setAdapter(adapter);
 
-                final List<List<List<String>>> ResultingList;
-
-                ResultingList=new ArrayList<List<List<String>>>();
-
-               allData.getAll(new EventsAll.VolleyCallback() {
-                   @Override
-                   public void onSuccess(final List<List<String>> result) {
-
-                       allTodayEvents.getData(new EventsToday.AsyncCallback() {
-                           @Override
-                           public void onSuccess(List<List<String>> list, boolean Today, boolean LoggedIn) {
-
-                               ResultingList.add(result);
-
-                               ResultingList.add(list);
 
                                UpcomingEvents= (RecyclerView) findViewById(R.id.UpcomingEventsMainScreen);
                                layoutManagerUpcomingEvents=new LinearLayoutManager(MainActivity.this);
                                UpcomingEvents.setLayoutManager(layoutManagerUpcomingEvents);
-                               adapterUpcomingEvents=new RecyclerUpComingEventsVertical(LoggedIn,Today,MainActivity.this,ResultingList);
+                               adapterUpcomingEvents=new RecyclerUpComingEventsVertical(MainActivity.this);
                                UpcomingEvents.setAdapter(adapterUpcomingEvents);
-
-
-
-                           }
-                       });
-                   }
-               });
-
 
             }
         });
