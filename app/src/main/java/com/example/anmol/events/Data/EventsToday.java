@@ -28,7 +28,7 @@ public class EventsToday {
 
     List<String> timeArr;
 
-    public static final String URL="http://192.168.0.106:3000/android/Events/TodayEvents";
+    public static final String URL="http://192.168.0.105:3000/android/Events/TodayEvents";
 
 
     public EventsToday(Context ctx){

@@ -30,7 +30,7 @@ public class logout {
 
     String TAG = "MOVIE";
 
-    final static String URL = "http://192.168.0.106:3000/android/logOut";
+    final static String URL = "http://192.168.0.105:3000/android/logOut";
 
     AsyncHttpClient asyncHttpClient;
     RequestParams requestParams;

@@ -21,7 +21,7 @@ public class InsiderData {
 
     //Request Que
     RequestQueue rq;
-    private static final String URL="http://192.168.0.106:3000/android/Insider/delhi";
+    private static final String URL="http://192.168.0.105:3000/android/Insider/delhi";
 
     private List<String> nameL,imgL,dateL,placeL;
 

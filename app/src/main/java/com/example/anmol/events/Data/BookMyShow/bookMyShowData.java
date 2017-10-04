@@ -29,7 +29,7 @@ public class bookMyShowData {
     List<List<String>> li;
 
     // URL must be changed
-    private static final String URL= "http://192.168.0.106:3000/android/BookMyShow";
+    private static final String URL= "http://192.168.0.105:3000/android/BookMyShow";
 
 
     // consructor
