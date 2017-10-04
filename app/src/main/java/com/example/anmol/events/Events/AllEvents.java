@@ -85,12 +85,12 @@ public class AllEvents extends AppCompatActivity {
                 if (verticalOffset * -1 >= scroll-150 ){
                     collapsingToolbarLayout.setTitle("Upcoming Events");
                     collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
-
                 }
 
                 else{
                     collapsingToolbarLayout.setTitle("Upcoming Events");
                     collapsingToolbarLayout.setExpandedTitleTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+                    collapsingToolbarLayout.setExpandedTitleColor(Color.WHITE);
                     collapsingToolbarLayout.setExpandedTitleGravity(Gravity.CENTER);
                 }
 

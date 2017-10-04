@@ -3,9 +3,11 @@ package com.example.anmol.events.Events;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Menu;
+import android.widget.TextView;
 
+import com.example.anmol.events.Adapter.RecyclerAdapterYours;
 import com.example.anmol.events.Data.yourEvents;
 import com.example.anmol.events.R;
 
@@ -21,6 +23,7 @@ public class YourEvents extends AppCompatActivity{
     private RecyclerView rv;
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter adapter;
+    TextView tx;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,6 +50,12 @@ public class YourEvents extends AppCompatActivity{
                 //getting jsonArray
                 JSONArray jsonArray=jsonObject.getJSONArray("result");
 
+                int count=jsonObject.getInt("count");
+
+                System.out.println("Count  : " + count);
+
+                tx.setText(String.valueOf(count));
+
                 for (int i=0;i<jsonArray.length();i++){
                     JSONObject jsonObject1=jsonArray.getJSONObject(i);
                     imgUrl.add(jsonObject1.getString("imgUrl"));
@@ -57,6 +66,10 @@ public class YourEvents extends AppCompatActivity{
                 }
 
                 //Setting Up Recycler View
+                layoutManager=new LinearLayoutManager(getApplicationContext());
+                adapter=new RecyclerAdapterYours(YourEvents.this,imgUrl,name,date,time,desc);
+                rv.setLayoutManager(layoutManager);
+                rv.setAdapter(adapter);
 
             }
         });
@@ -65,5 +78,6 @@ public class YourEvents extends AppCompatActivity{
     // Method to initialize views
     public void initViews(){
         rv= (RecyclerView) findViewById(R.id.recyclerViewYours);
+        tx= (TextView) findViewById(R.id.CountYour);
     }
 }
