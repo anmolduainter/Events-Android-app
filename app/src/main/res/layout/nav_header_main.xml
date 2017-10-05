@@ -40,8 +40,6 @@
                 android:layout_height="75dp"
                 />
 
-
         </RelativeLayout>
     </FrameLayout>
-
 </RelativeLayout>

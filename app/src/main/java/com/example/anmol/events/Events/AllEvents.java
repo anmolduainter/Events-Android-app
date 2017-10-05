@@ -100,10 +100,9 @@ public class AllEvents extends AppCompatActivity {
 
         allData.getAll(new EventsAll.VolleyCallback() {
             @Override
-            public void onSuccess(final List<List<String>> result) {
+            public void onSuccess(final List<List<String>> result,final List<Boolean> reg,final List<Boolean> fav) {
 
-
-                       login l=new login(AllEvents.this);
+                        login l=new login(AllEvents.this);
 
                         l.Login(new login.AsyncCallback() {
                             @Override
@@ -111,10 +110,9 @@ public class AllEvents extends AppCompatActivity {
 
                                 boolean Loggedin=jsonObject.getBoolean("loggedIn");
 
-
                                 layoutManager=new LinearLayoutManager(AllEvents.this);
                                 rv.setLayoutManager(layoutManager);
-                                adapter=new RecyclerAllEvents(Loggedin,AllEvents.this,result.get(0),result.get(1),result.get(2),result.get(3),result.get(4),result.get(5),result.get(6));
+                                adapter=new RecyclerAllEvents(Loggedin,AllEvents.this,result.get(0),result.get(1),result.get(2),result.get(3),result.get(4),result.get(5),result.get(6),reg,fav);
                                 rv.setAdapter(adapter);
 
 

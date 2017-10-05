@@ -129,7 +129,4 @@ public class EventsRegistered {
         void onSuccess(List<List<String>> list,List<Boolean> list1);
     }
 
-
-
-
 }

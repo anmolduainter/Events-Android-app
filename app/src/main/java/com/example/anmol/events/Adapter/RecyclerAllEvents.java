@@ -34,10 +34,11 @@ public class RecyclerAllEvents extends RecyclerView.Adapter<RecyclerAllEvents.Vi
 
     List<String> imgUrl,name,date,time,desc,phone,username;
     boolean LoggedIn;
+    List<Boolean> reg,fav;
     Context ctx;
     ImageView imageView;
 
-    public RecyclerAllEvents( boolean LoggedIn, Context ctx, List<String> imgUrl, List<String> name, List<String> date, List<String> time, List<String> desc, List<String> phone, List<String> username) {
+    public RecyclerAllEvents(boolean LoggedIn, Context ctx, List<String> imgUrl, List<String> name, List<String> date, List<String> time, List<String> desc, List<String> phone, List<String> username, List<Boolean> reg, List<Boolean> fav) {
 
 
         this.imgUrl=imgUrl;
@@ -49,6 +50,8 @@ public class RecyclerAllEvents extends RecyclerView.Adapter<RecyclerAllEvents.Vi
         this.username=username;
         this.ctx=ctx;
         this.LoggedIn=LoggedIn;
+        this.reg=reg;
+        this.fav=fav;
 
     }
 
@@ -178,7 +181,15 @@ public class RecyclerAllEvents extends RecyclerView.Adapter<RecyclerAllEvents.Vi
         holder.time1.setText(time.get(position));
         holder.desc1.setText(desc.get(position));
 
-
+        if (!reg.isEmpty()){
+            if (reg.get(position)){
+                holder.Register1.setBackgroundColor(Color.WHITE);
+                holder.Register1.setTextColor(Color.BLACK);
+            }
+            if (fav.get(position)){
+                holder.BookMark.setBackgroundResource(R.drawable.ic_check_white_48dp);
+            }
+        }
     }
 
     @Override
