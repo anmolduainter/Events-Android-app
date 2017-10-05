@@ -57,7 +57,6 @@ public class Register extends AppCompatActivity {
         }
         else{
             if (password.equals(confirmPass)){
-
                 register r=new register(Register.this,user,emailText,phoneText,password);
                 r.sendData();
             }
