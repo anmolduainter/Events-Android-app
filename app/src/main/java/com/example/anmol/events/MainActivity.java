@@ -20,6 +20,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amulyakhare.textdrawable.TextDrawable;
+import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.bumptech.glide.Glide;
 import com.example.anmol.events.Adapter.RecyclerUpComingEventsVertical;
 import com.example.anmol.events.Data.EventsAll;
@@ -114,9 +116,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ImageView imageViewNav=navHeader.findViewById(R.id.imageViewNav);
 
         //Navigation Header Profile Image
-        ImageView profileImage=navHeader.findViewById(R.id.ProfileImageNav);
+        final ImageView profileImage=navHeader.findViewById(R.id.ProfileImageNav);
         Picasso.with(MainActivity.this).load("http://www.ucb.ac.uk/content/images/courses/hospitality-tourism-events/events-management-3.jpg").fit().into(imageViewNav);
-        Glide.with(MainActivity.this).load(url).thumbnail(0.5f).bitmapTransform(new CircleTransform(this)).into(profileImage);
+
+        //Glide.with(MainActivity.this).load(url).thumbnail(0.5f).bitmapTransform(new CircleTransform(this)).into(profileImage);
+
+        ColorGenerator generator = ColorGenerator.MATERIAL; // or use DEFAULT
+        final int color1 = generator.getRandomColor();
+        final TextDrawable.IBuilder builder = TextDrawable.builder()
+                .beginConfig()
+                .withBorder(4)
+                .endConfig()
+                .rect();
 
         DisplayMetrics displayMetrics=new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
@@ -132,10 +143,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 MenuItem login=menu.findItem(R.id.LoginMenu);
 
                 if (LoggedIn) {
+                    profileImage.setVisibility(View.VISIBLE);
                     login.setTitle("LogOut");
+                    TextDrawable ic1 = builder.build(jsonObject.getJSONObject("user").getJSONObject("user").getString("username").substring(0,1).toUpperCase(), color1);
+                    profileImage.setImageDrawable(ic1);
                     tx.setText("Welcome "+jsonObject.getJSONObject("user").getJSONObject("user").getString("username"));
                 }
                 else{
+                    profileImage.setVisibility(View.GONE);
                     login.setTitle("LogIn");
                     tx.setText("Please Login");
                 }

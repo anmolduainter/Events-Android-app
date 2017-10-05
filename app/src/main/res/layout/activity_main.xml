@@ -19,6 +19,8 @@
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="280dp"
+        android:background="#212121"
+        app:itemTextColor="#fff"
         android:layout_gravity="start"
         android:fitsSystemWindows="false"
         app:menu="@menu/activity_main_drawer"

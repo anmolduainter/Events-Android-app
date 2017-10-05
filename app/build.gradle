@@ -57,6 +57,9 @@ dependencies {
     //progress bar
     compile 'com.github.rahatarmanahmed:circularprogressview:2.5.0'
 
+    // circular round text image
+    compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
+
 
 }
 
