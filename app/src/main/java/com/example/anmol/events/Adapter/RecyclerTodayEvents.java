@@ -40,7 +40,7 @@ public class RecyclerTodayEvents extends RecyclerView.Adapter<RecyclerTodayEvent
 
     class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView name1,date1,time1,desc1;
+        TextView name1,date1,time1,timegoingOn;
         ImageView img1;
         RelativeLayout rel1;
         Button Register1,Like,NotLike;
@@ -48,15 +48,14 @@ public class RecyclerTodayEvents extends RecyclerView.Adapter<RecyclerTodayEvent
         public ViewHolder(View itemView)
         {
             super(itemView);
-            rel1=itemView.findViewById(R.id.RegEventRel);
-            img1=itemView.findViewById(R.id.RegEventsImage);
-            name1=itemView.findViewById(R.id.RegName);
-            date1=itemView.findViewById(R.id.RegDate);
-            time1=itemView.findViewById(R.id.RegTime);
-            desc1=itemView.findViewById(R.id.RegDesc);
-            Register1=itemView.findViewById(R.id.Not_Register_Reg_Events_Button);
-            Like=itemView.findViewById(R.id.Like_Reg_Events_Button);
-            NotLike=itemView.findViewById(R.id.Not_Like_Reg_Events_Button);
+            rel1=itemView.findViewById(R.id.TimeEventRel);
+            img1=itemView.findViewById(R.id.TimeEventsImage);
+            name1=itemView.findViewById(R.id.TimeName);
+            date1=itemView.findViewById(R.id.TimeDate);
+            time1=itemView.findViewById(R.id.TimeTime);
+            timegoingOn=itemView.findViewById(R.id.TimeGoingon);
+            Like=itemView.findViewById(R.id.Like_Time_Events_Button);
+            NotLike=itemView.findViewById(R.id.Not_Like_Time_Events_Button);
         }
 
 
@@ -67,7 +66,7 @@ public class RecyclerTodayEvents extends RecyclerView.Adapter<RecyclerTodayEvent
     @Override
     public RecyclerTodayEvents.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        return new RecyclerTodayEvents.ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.card_layout_reg_events,parent,false));
+        return new RecyclerTodayEvents.ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.card_layout_today_events,parent,false));
 
     }
 
@@ -80,7 +79,7 @@ public class RecyclerTodayEvents extends RecyclerView.Adapter<RecyclerTodayEvent
         holder.name1.setText(name.get(position));
         holder.date1.setText(date.get(position));
         holder.time1.setText(time.get(position));
-        holder.desc1.setText(desc.get(position));
+    //    holder.desc1.setText(desc.get(position));
 
 
     }

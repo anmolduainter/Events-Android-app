@@ -4,10 +4,12 @@
     android:layout_height="320dp"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:elevation="2dp"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
+    android:elevation="10dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
     android:layout_marginTop="10dp"
+    app:cardCornerRadius="10dp"
+    android:layout_marginBottom="10dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <RelativeLayout
@@ -18,111 +20,116 @@
         <ImageView
             android:id="@+id/RegEventsImage"
             android:background="@drawable/mountain"
-            android:layout_width="200dp"
-            android:layout_height="200dp" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+     <RelativeLayout
+         android:layout_width="wrap_content"
+         android:background="#8000"
+         android:layout_alignParentBottom="true"
+         android:layout_marginBottom="100dp"
+         android:layout_height="50dp">
 
-        <TextView
-            android:id="@+id/RegName"
-            android:layout_toRightOf="@id/RegEventsImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Rock-Climbing"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:layout_marginLeft="5dp"/>
+         <TextView
+             android:id="@+id/RegName"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:textStyle="bold"
+             android:layout_centerInParent="true"
+             android:paddingLeft="10dp"
+             android:paddingRight="10dp"
+             android:textSize="25sp"
+             android:text="Rock Climbing"
+             android:textColor="#fff" />
 
+     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_alignParentBottom="true"
+        android:background="#8000"
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
 
         <TextView
             android:id="@+id/RegDate"
-            android:layout_toRightOf="@id/RegEventsImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/RegName"
-            android:layout_marginTop="10dp"
-            android:text="2017-11-10"
-            android:textSize="18dp"
+            android:textColor="#fff"
+            android:text="2017-08-10"
             android:textStyle="bold"
-            android:layout_marginLeft="5dp"/>
-
-
+            android:textSize="20sp"
+            android:padding="10dp"/>
 
         <TextView
             android:id="@+id/RegTime"
-            android:layout_toRightOf="@id/RegEventsImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_below="@id/RegDate"
-            android:layout_marginTop="15dp"
-            android:text="8:00 AM - 9:00 PM"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            />
-
-
-
-        <TextView
-            android:id="@+id/RegDesc"
-            android:layout_toRightOf="@id/RegEventsImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/RegTime"
-            android:layout_marginTop="10dp"
-            android:text="Rock event"
-            android:textSize="15dp"
-            android:textStyle="italic"
-            />
-
-
-        <Button
-            android:id="@+id/Like_Reg_Events_Button"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:text="Like"
-            android:textStyle="bold"
             android:textColor="#fff"
-            android:layout_marginBottom="10dp"
-            android:textSize="15dp"
-            android:visibility="gone"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="30dp"
-            android:background="@android:color/holo_blue_dark"
-            />
+            android:text="10:00 AM - 10:00 PM"
+            android:textStyle="bold"
+            android:textSize="15sp"
+      />
 
 
         <Button
             android:id="@+id/Not_Register_Reg_Events_Button"
             android:layout_width="150dp"
+            android:layout_centerVertical="true"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:text="Not REGISTER"
-            android:textStyle="bold"
-            android:textColor="#fff"
-            android:layout_marginBottom="40dp"
-            android:textSize="15dp"
-            android:background="@android:color/holo_orange_dark"
-            android:layout_centerHorizontal="true"/>
+           android:text="Not REGISTER"
+           android:textStyle="bold"
+           android:textColor="#fff" android:layout_alignParentRight="true"
+           android:textSize="15dp"
+              android:background="@android:color/holo_orange_dark" />
+
+    </RelativeLayout>
+        <!--<Button-->
+            <!--android:id="@+id/Like_Reg_Events_Button"-->
+            <!--android:layout_width="70dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:text="Like"-->
+            <!--android:textStyle="bold"-->
+            <!--android:textColor="#fff"-->
+            <!--android:layout_marginBottom="10dp"-->
+            <!--android:textSize="15dp"-->
+            <!--android:visibility="gone"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_marginRight="30dp"-->
+            <!--android:background="@android:color/holo_blue_dark"-->
+            <!--/>-->
 
 
-        <Button
-            android:id="@+id/Not_Like_Reg_Events_Button"
-            android:layout_width="90dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:text="Not Like"
-            android:textStyle="bold"
-            android:visibility="gone"
-            android:textColor="#fff"
-            android:layout_marginBottom="10dp"
-            android:textSize="15dp"
-            android:layout_marginLeft="30dp"
-            android:background="@android:color/holo_red_light"
-            />
+        <!--<Button-->
+            <!--android:id="@+id/Not_Register_Reg_Events_Button"-->
+            <!--android:layout_width="150dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:text="Not REGISTER"-->
+            <!--android:textStyle="bold"-->
+            <!--android:textColor="#fff"-->
+            <!--android:layout_marginBottom="40dp"-->
+            <!--android:textSize="15dp"-->
+            <!--android:background="@android:color/holo_orange_dark"-->
+            <!--android:layout_centerHorizontal="true"/>-->
+
+
+        <!--<Button-->
+            <!--android:id="@+id/Not_Like_Reg_Events_Button"-->
+            <!--android:layout_width="90dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:text="Not Like"-->
+            <!--android:textStyle="bold"-->
+            <!--android:visibility="gone"-->
+            <!--android:textColor="#fff"-->
+            <!--android:layout_marginBottom="10dp"-->
+            <!--android:textSize="15dp"-->
+            <!--android:layout_marginLeft="30dp"-->
+            <!--android:background="@android:color/holo_red_light"-->
+            <!--/>-->
+
 
 
     </RelativeLayout>
-
-
-
 </android.support.v7.widget.CardView>

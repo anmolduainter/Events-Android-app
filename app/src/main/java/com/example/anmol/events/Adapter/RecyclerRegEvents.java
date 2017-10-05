@@ -74,10 +74,10 @@ public class RecyclerRegEvents extends RecyclerView.Adapter<RecyclerRegEvents.Vi
             name1=itemView.findViewById(R.id.RegName);
             date1=itemView.findViewById(R.id.RegDate);
             time1=itemView.findViewById(R.id.RegTime);
-            desc1=itemView.findViewById(R.id.RegDesc);
+       //     desc1=itemView.findViewById(R.id.RegDesc);
             Register1=itemView.findViewById(R.id.Not_Register_Reg_Events_Button);
-            Like=itemView.findViewById(R.id.Like_Reg_Events_Button);
-            NotLike=itemView.findViewById(R.id.Not_Like_Reg_Events_Button);
+       //     Like=itemView.findViewById(R.id.Like_Reg_Events_Button);
+       //     NotLike=itemView.findViewById(R.id.Not_Like_Reg_Events_Button);
 
             // Not Register Click
             Register1.setOnClickListener(new View.OnClickListener() {
@@ -108,7 +108,7 @@ public class RecyclerRegEvents extends RecyclerView.Adapter<RecyclerRegEvents.Vi
         holder.name1.setText(name.get(position));
         holder.date1.setText(date.get(position));
         holder.time1.setText(time.get(position));
-        holder.desc1.setText(desc.get(position));
+      //  holder.desc1.setText(desc.get(position));
 
 
     }

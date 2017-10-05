@@ -19,12 +19,12 @@
             android:layout_height="match_parent"
             android:background="#000"
             app:contentScrim="@color/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
 
             <ImageView
                 android:id="@+id/imageRegEventsTop"
                 android:layout_width="match_parent"
-                android:alpha="0.5"
+                android:alpha="0.7"
                 android:layout_height="match_parent"
               />
 

@@ -23,7 +23,7 @@ public class UnRegisteredEvent {
     For Unregitering The event
  */
 
-    private static final String URL="http://192.168.0.106:3000/Events/RegisteredEvents";
+    private static final String URL="http://192.168.0.105:3000/Events/RegisteredEvents";
 
     Context ctx;
 

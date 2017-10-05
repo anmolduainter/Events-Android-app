@@ -2,6 +2,7 @@ package com.example.anmol.events.Events;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -87,21 +88,20 @@ public class RegisteredEvents extends AppCompatActivity {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
 
-                if (scroll == -1) {
-                    scroll = appBarLayout.getTotalScrollRange();
+                if (scroll==-1){
+                    scroll=appBarLayout.getTotalScrollRange();
                 }
 
-                if (verticalOffset * -1 >= scroll - 150) {
+                if (verticalOffset * -1 >= scroll-100 ){
                     collapsingToolbarLayout.setTitle("Registered Events");
-                    collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
+                    collapsingToolbarLayout.setCollapsedTitleTextColor(Color.BLACK);
+                }
 
-                } else {
-
+                else{
                     collapsingToolbarLayout.setTitle("Registered Events");
-                    collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
-
+                    collapsingToolbarLayout.setExpandedTitleTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+                    collapsingToolbarLayout.setExpandedTitleColor(Color.WHITE);
                     collapsingToolbarLayout.setExpandedTitleGravity(Gravity.CENTER);
-
                 }
 
             }

@@ -160,9 +160,6 @@ public class EventsAll {
                         Actualli.add(phone);
                         Actualli.add(username);
 
-
-
-
                         callback.onSuccess(Actualli,reg,fav);
 
 
