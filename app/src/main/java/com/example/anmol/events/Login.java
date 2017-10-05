@@ -21,7 +21,8 @@ import org.json.JSONObject;
 public class Login extends AppCompatActivity{
 
     EditText email,password;
-    Button loginBtn;
+    Button loginBtn,RegBtn;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,6 +32,7 @@ public class Login extends AppCompatActivity{
         email= (EditText) findViewById(R.id.Email_login);
         password= (EditText) findViewById(R.id.password_login);
         loginBtn= (Button) findViewById(R.id.login_btn);
+        RegBtn= (Button) findViewById(R.id.Register_btn);
 
         login first=new login(Login.this);
 
@@ -93,6 +95,13 @@ public class Login extends AppCompatActivity{
             }
         });
 
+        RegBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(Login.this,Register.class);
+                startActivity(i);
+            }
+        });
 
 
     }
