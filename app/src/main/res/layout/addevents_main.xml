@@ -22,7 +22,8 @@
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/ImageUrlTextIn"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
+            android:layout_marginRight="20dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true">
 
@@ -36,7 +37,8 @@
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/titleTextIn"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
+            android:layout_marginRight="20dp"
             android:layout_below="@id/ImageUrlTextIn"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true">
@@ -52,7 +54,8 @@
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/descTextIn"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
+            android:layout_marginRight="20dp"
             android:layout_below="@id/titleTextIn"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true">
@@ -66,51 +69,73 @@
         </android.support.design.widget.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/dateTextIn"
-            android:layout_width="280dp"
-            android:layout_marginTop="20dp"
+        <ImageView
+            android:id="@+id/DatePicker"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_below="@id/descTextIn"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true">
-            <EditText
-                android:id="@+id/dateEditText"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="Date"/>
-        </android.support.design.widget.TextInputLayout>
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/calendar"/>
+
+        <EditText
+            android:id="@+id/DatePickerEdit"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:hint="Date in yyyy-mm-dd"
+            android:layout_below="@id/descTextIn"
+            android:layout_toRightOf="@id/DatePicker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
 
         <ImageView
+            android:id="@+id/TimePicker"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/DatePicker"
             android:layout_marginTop="20dp"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_centerVertical="true"
-            android:layout_below="@id/descTextIn"
-            android:background="@drawable/logo"
-            android:layout_toRightOf="@id/dateTextIn"/>
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/timer"/>
+
+        <EditText
+            android:id="@+id/TimePickerEdit"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:hint="Start Time"
+            android:layout_below="@id/DatePicker"
+            android:layout_toRightOf="@id/TimePicker"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content" />
 
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/timeTextIn"
-            android:layout_width="300dp"
-            android:layout_below="@id/dateTextIn"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true">
+        <ImageView
+            android:id="@+id/TimePicker1"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/TimePicker"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/timer"/>
 
-            <EditText
-                android:id="@+id/timeEditText"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="Time"/>
+        <EditText
+            android:id="@+id/TimePickerEdit1"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:hint="End Time"
+            android:layout_below="@id/TimePicker"
+            android:layout_toRightOf="@id/TimePicker"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content" />
 
-        </android.support.design.widget.TextInputLayout>
 
 
         <Button
             android:id="@+id/SubmitAddEvents"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/timeTextIn"
+            android:layout_below="@id/TimePicker1"
             android:layout_marginTop="40dp"
             android:text="Submit"
             android:textColor="#fff"
