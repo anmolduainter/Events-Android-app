@@ -14,12 +14,6 @@
 
             android:title="RegisteredEvents" />
 
-
-        <item
-            android:id="@+id/BookMarkEventsMenu"
-
-            android:title="BookMark Events" />
-
         <item
             android:id="@+id/YourEventsMenu"
 

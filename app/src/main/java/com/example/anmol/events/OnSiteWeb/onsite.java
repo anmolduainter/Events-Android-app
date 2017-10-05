@@ -9,10 +9,6 @@ import android.webkit.WebViewClient;
 
 import com.example.anmol.events.R;
 
-/**
- * Created by anmol on 15/8/17.
- */
-
 public class onsite extends AppCompatActivity {
 
 
@@ -23,7 +19,7 @@ public class onsite extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.onsiteweb);
         webView= (WebView) findViewById(R.id.WebView);
-        String url="https://www.eventshigh.com"+getIntent().getExtras().getString("link");
+        String url=getIntent().getExtras().getString("link");
         WebViewClient webViewClient=new WebViewClient();
         webView.setWebViewClient(webViewClient);
         WebSettings webSettings = webView.getSettings();

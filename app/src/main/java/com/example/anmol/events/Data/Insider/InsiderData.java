@@ -23,7 +23,7 @@ public class InsiderData {
     RequestQueue rq;
     private static final String URL="http://192.168.0.105:3000/android/Insider/delhi";
 
-    private List<String> nameL,imgL,dateL,placeL;
+    private List<String> nameL,imgL,dateL,placeL,hrefL;
 
     private List<List<String>> li;
     Context ctx;
@@ -35,6 +35,7 @@ public class InsiderData {
         imgL=new ArrayList<>();
         dateL=new ArrayList<>();
         placeL=new ArrayList<>();
+        hrefL=new ArrayList<>();
         li=new ArrayList<>();
     }
 
@@ -73,6 +74,10 @@ public class InsiderData {
                                 String place=jsonObject.getString("place");
                                 placeL.add(place);
 
+                                //href
+                                String href=jsonObject.getString("href");
+                                hrefL.add(href);
+
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -81,6 +86,7 @@ public class InsiderData {
                         li.add(imgL);
                         li.add(dateL);
                         li.add(placeL);
+                        li.add(hrefL);
 
                         insiderCallBack.result(li);
 

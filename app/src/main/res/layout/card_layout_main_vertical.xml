@@ -30,9 +30,17 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"/>
 
+        <ImageView
+            android:id="@+id/imagenewvertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:layout_below="@id/TextViewContent"/>
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/UpcomingEventsMainScreenSecondRecycler"
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:layout_height="320dp"
             android:layout_marginTop="2dp"
             android:nestedScrollingEnabled="false"

@@ -65,7 +65,7 @@ public class RecyclerTechnologyAdapter extends RecyclerView.Adapter<RecyclerTech
             img=itemView.findViewById(R.id.EventsHighTodayImage);
             titl=itemView.findViewById(R.id.EventsHighTodayTitle);
             dateTim=itemView.findViewById(R.id.EventsHighTodayDateTime);
-            evenu=itemView.findViewById(R.id.EventsHighTodayEvenue);
+           // evenu=itemView.findViewById(R.id.EventsHighTodayEvenue);
             genr=itemView.findViewById(R.id.EventsHighTodayGenre);
 
             rv=itemView.findViewById(R.id.RelativeMainEventsHighToday);

@@ -1,6 +1,7 @@
 package com.example.anmol.events.Adapter.BookMyShow;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.example.anmol.events.OnSiteWeb.onsite;
 import com.example.anmol.events.R;
 import com.squareup.picasso.Picasso;
 
@@ -54,10 +56,22 @@ public class BookMyShowAdapter extends RecyclerView.Adapter<BookMyShowAdapter.Vi
             img=itemView.findViewById(R.id.EventsHighTodayImage);
             titl=itemView.findViewById(R.id.EventsHighTodayTitle);
             dateTim=itemView.findViewById(R.id.EventsHighTodayDateTime);
-            evenu=itemView.findViewById(R.id.EventsHighTodayEvenue);
+         //   evenu=itemView.findViewById(R.id.EventsHighTodayEvenue);
             genr=itemView.findViewById(R.id.EventsHighTodayGenre);
 
             rv=itemView.findViewById(R.id.RelativeMainEventsHighToday);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    int pos=getAdapterPosition();
+
+                    Intent i=new Intent(ctx,onsite.class);
+                    i.putExtra("link","https://in.bookmyshow.com/"+buyNow.get(pos).replace("//","/"));
+                    ctx.startActivity(i);
+
+                }
+            });
 
         }
     }
@@ -89,9 +103,6 @@ public class BookMyShowAdapter extends RecyclerView.Adapter<BookMyShowAdapter.Vi
 
         //Setting date
         holder.dateTim.setText(date.get(position));
-
-        //Setting Evenue
-        holder.evenu.setText("");
 
         //Setting Tag
         holder.genr.setText(tag.get(position));

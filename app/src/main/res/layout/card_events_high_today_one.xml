@@ -12,12 +12,12 @@
 
 
     <RelativeLayout
-        android:id="@+id/RelativeMainEventsHighToday"
+        android:id="@+id/RelativeMainEventsHighTodayOne"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <com.fmsirvent.ParallaxEverywhere.PEWImageView
-            android:id="@+id/EventsHighTodayImage"
+            android:id="@+id/EventsHighTodayImageOne"
             android:layout_width="200dp"
             android:layout_centerHorizontal="true"
             android:transitionName="Event_Photo"
@@ -28,19 +28,29 @@
 
 
         <RelativeLayout
-            android:id="@+id/EventsHighTodayRel"
+            android:id="@+id/EventsHighTodayRelOne"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:background="#8000"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_alignParentBottom="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello"
+                android:layout_marginLeft="10dp"
+                android:textColor="#fff"
+                android:id="@+id/EventsHighTodayEvenueOne"/>
 
 
             <TextView
-                android:id="@+id/EventsHighTodayDateTime"
+                android:id="@+id/EventsHighTodayDateTimeOne"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginTop="10dp"
+                android:layout_below="@id/EventsHighTodayEvenueOne"
+                android:layout_marginTop="5dp"
                 android:text="2017-11-10"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -50,7 +60,7 @@
 
 
             <TextView
-                android:id="@+id/EventsHighTodayGenre"
+                android:id="@+id/EventsHighTodayGenreOne"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -73,11 +83,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#8000"
-            android:layout_above="@id/EventsHighTodayRel"
+            android:layout_above="@id/EventsHighTodayRelOne"
             >
 
             <TextView
-                android:id="@+id/EventsHighTodayTitle"
+                android:id="@+id/EventsHighTodayTitleOne"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rock-Climbing"
@@ -85,10 +95,10 @@
                 android:paddingBottom="5dp"
                 android:paddingLeft="2dp"
                 android:paddingRight="2dp"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textColor="#fff"
                 android:textStyle="bold"
-                android:layout_marginLeft="5dp"/>
+                android:layout_marginLeft="10dp"/>
 
         </RelativeLayout>
 

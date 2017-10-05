@@ -2,6 +2,7 @@ package com.example.anmol.events.Adapter.Insider;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +18,7 @@ import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.example.anmol.events.Adapter.BookMyShow.BookMyShowAdapter;
+import com.example.anmol.events.OnSiteWeb.onsite;
 import com.example.anmol.events.R;
 import com.squareup.picasso.Picasso;
 
@@ -28,15 +30,16 @@ public class InsiderAdapter extends RecyclerView.Adapter<InsiderAdapter.ViewHold
 
 
     Context ctx;
-    private List<String> image,title,date,place;
+    private List<String> image,title,date,place,href;
 
-    public InsiderAdapter(Context ctx, List<String> image, List<String> title, List<String> date, List<String> place){
+    public InsiderAdapter(Context ctx, List<String> image, List<String> title, List<String> date, List<String> place,List<String> href){
 
         this.ctx=ctx;
         this.image=image;
         this.title=title;
         this.date=date;
         this.place=place;
+        this.href=href;
 
     }
 
@@ -51,13 +54,24 @@ public class InsiderAdapter extends RecyclerView.Adapter<InsiderAdapter.ViewHold
         public ViewHolder(View itemView) {
             super(itemView);
 
-            img=itemView.findViewById(R.id.EventsHighTodayImage);
-            titl=itemView.findViewById(R.id.EventsHighTodayTitle);
-            dateTim=itemView.findViewById(R.id.EventsHighTodayDateTime);
-            evenu=itemView.findViewById(R.id.EventsHighTodayEvenue);
-            genr=itemView.findViewById(R.id.EventsHighTodayGenre);
+            img=itemView.findViewById(R.id.EventsHighTodayImageOne);
+            titl=itemView.findViewById(R.id.EventsHighTodayTitleOne);
+            dateTim=itemView.findViewById(R.id.EventsHighTodayDateTimeOne);
+            evenu=itemView.findViewById(R.id.EventsHighTodayEvenueOne);
+            genr=itemView.findViewById(R.id.EventsHighTodayGenreOne);
 
-            rv=itemView.findViewById(R.id.RelativeMainEventsHighToday);
+            rv=itemView.findViewById(R.id.RelativeMainEventsHighTodayOne);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Intent i=new Intent(ctx,onsite.class);
+                    i.putExtra("link","https://insider.in"+href.get(getAdapterPosition()));
+                    ctx.startActivity(i);
+
+                }
+            });
 
         }
     }
@@ -66,7 +80,7 @@ public class InsiderAdapter extends RecyclerView.Adapter<InsiderAdapter.ViewHold
     @Override
     public InsiderAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        return new InsiderAdapter.ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.card_events_high_today,parent,false));
+        return new InsiderAdapter.ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.card_events_high_today_one,parent,false));
 
     }
 
