@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_screen2">
+
+
+    <ImageView
+        android:id="@+id/secondone"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/eventshigh"/>
+
+
+    <ImageView
+        android:id="@+id/secondtwo"
+        android:layout_below="@id/secondone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/bookmyshow"/>
+
+    <ImageView
+        android:id="@+id/secondthree"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="70dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/insiderlogo"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="You can find \n all the latest events \n from all popular apps \n in just one app"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:textSize="30sp"
+        android:textColor="#424242"
+        android:layout_below="@id/secondtwo"/>
+
+</RelativeLayout>

@@ -215,8 +215,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent i=new Intent(MainActivity.this,AllEvents.class);
             startActivity(i);
 
-        } else if (id == R.id.BookMarkEventsMenu) {
-
         }
 
         // Today Events Menu
