@@ -14,9 +14,6 @@ import com.example.anmol.events.Data.login;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/**
- * Created by anmol on 30/7/17.
- */
 
 public class Login extends AppCompatActivity{
 
@@ -80,7 +77,7 @@ public class Login extends AppCompatActivity{
                             Toast.makeText(getApplicationContext(),"successfull Login",Toast.LENGTH_LONG).show();
                             Intent i=new Intent(Login.this,MainActivity.class);
                             startActivity(i);
-
+                            Login.this.finish();
 
                         }
                         else{

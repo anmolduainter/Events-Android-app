@@ -1,7 +1,11 @@
 package com.example.anmol.events.PostData;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.widget.Toast;
 
+import com.example.anmol.events.Login;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.PersistentCookieStore;
@@ -44,6 +48,11 @@ public class register {
 
     public void sendData(){
 
+        requestParams.put("username",username);
+        requestParams.put("email",email);
+        requestParams.put("password",pass);
+        requestParams.put("phone",phone);
+
         asyncHttpClient.post(URL, requestParams, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -53,8 +62,19 @@ public class register {
                     System.out.println(new String(responseBody));
                     JSONObject jsonObject=new JSONObject(new String(responseBody));
 
-                    //Checking the output
-                    System.out.println("AddEvents : " + jsonObject);
+                    if (jsonObject.getBoolean("status")){
+
+                        if (jsonObject.getString("msg").equals("OK")){
+
+                            Intent i=new Intent(ctx, Login.class);
+                            ctx.startActivity(i);
+                            ((Activity)ctx).finish();
+
+                        }
+                        else{
+                            Toast.makeText(ctx,"Email Already Taken",Toast.LENGTH_LONG).show();
+                        }
+                    }
 
                 }
                 catch (JSONException e) {
@@ -63,6 +83,8 @@ public class register {
             }
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+
+
 
             }
         });

@@ -56,13 +56,14 @@ public class Register extends AppCompatActivity {
             Toast.makeText(Register.this, "One or more fields are empty", Toast.LENGTH_SHORT).show();
         }
         else{
-            if (password!=confirmPass){
-                Toast.makeText(Register.this,"Please Confirm Your Password",Toast.LENGTH_LONG).show();
-            }
-            else{
+            if (password.equals(confirmPass)){
 
                 register r=new register(Register.this,user,emailText,phoneText,password);
                 r.sendData();
+            }
+            else{
+
+                Toast.makeText(Register.this,"Please Confirm Your Password",Toast.LENGTH_LONG).show();
 
             }
         }

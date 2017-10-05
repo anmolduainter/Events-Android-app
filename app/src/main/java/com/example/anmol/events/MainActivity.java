@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 if (LoggedIn) {
                     login.setTitle("LogOut");
-                    tx.setText("Welcome "+jsonObject.getJSONObject("user").getString("username"));
+                    tx.setText("Welcome "+jsonObject.getJSONObject("user").getJSONObject("user").getString("username"));
                 }
                 else{
                     login.setTitle("LogIn");
