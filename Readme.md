@@ -19,5 +19,5 @@
   
   - Ranking of organization by liking and disliking of an event. 
   
-#### Anyone want to contribute in this project are  welcomed.
+#### Anyone want to contribute in this project are  welcome.
   
